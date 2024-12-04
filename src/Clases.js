@@ -1,24 +1,25 @@
-import { faUser } from '@fortawesome/free-regular-svg-icons'
+import { faCalendarAlt, faUser } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import { faFootball } from '@fortawesome/free-solid-svg-icons'
 
-function Userlist() {
+function Clases() {
 
-  const [userList, setUserList] = useState([]);
+  const [ClasesList, setClasesList] = useState([]);
   const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
     //On Load
-    getUsers();
+    getClases();
     console.log("welcome");
   }, []);
 
-  let getUsers = async () => {
+  let getClases = async () => {
     try {
-      const users = await axios.get("http://localhost:8000/api/clientas/");
-      setUserList(users.data);
+      const clases = await axios.get("http://localhost:8000/api/clases/");
+      setClasesList(clases.data);
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -30,7 +31,7 @@ function Userlist() {
       const confirmDelete = window.confirm("Are you sure do you want to delete the data?");
       if (confirmDelete) {
         await axios.delete(`${id}`);
-        getUsers();
+        getClases();
       }
     } catch (error) {
       console.log(error);
@@ -40,10 +41,10 @@ function Userlist() {
   return (
     <>
       <div className="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 className="h3 mb-0 text-gray-800">User-List</h1>
+        <h1 className="h3 mb-0 text-gray-800">Clases-List</h1>
         <Link to="/portal/create-user" className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-          <FontAwesomeIcon icon={faUser} className="creatinguser mr-2" />
-          Agregar Usuario
+          <FontAwesomeIcon icon={faCalendarAlt} className="creatinguser mr-2" />
+          Agregar Clases
         </Link>
       </div>
       {/* <!-- DataTables --> */}
@@ -59,39 +60,30 @@ function Userlist() {
                   <thead>
                     <tr>
                       <th>Id</th>
-                      <th>Nombres</th>
-                      <th>Apellido Paterno</th>
-                      <th>Apellido Materno</th>
-                      <th>Direccion</th>
-                      <th>Estado Civil</th>
+                      <th>Nombre Clase</th>
+                      <th>Id Disciplina</th>
                       <th>Action</th>
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
                       <th>Id</th>
-                      <th>Nombres</th>
-                      <th>Apellido Paterno</th>
-                      <th>Apellido Materno</th>
-                      <th>Direccion</th>
-                      <th>Estado Civil</th>
+                      <th>Nombre Clase</th>
+                      <th>Id Disciplina</th>
                       <th>Action</th>
                     </tr>
                   </tfoot>
                   <tbody>
-                    {userList.map((user) => {
+                    {ClasesList.map((clases) => {
                       return (
                         <tr>
-                          <td>{user.id_clienta}</td>
-                          <td>{user.nombres}</td>
-                          <td>{user.apellido_paterno}</td>
-                          <td>{user.apellido_materno}</td>
-                          <td>{user.direccion}</td>
-                          <td>{user.id_estado_civil}</td>
+                          <td>{clases.id_clase}</td>
+                          <td>{clases.nombre_clase}</td>
+                          <td>{clases.id_disciplina}</td>
                           <th>
-                            <Link to={`/portal/user-view/${user.id_clienta}`} className='btn btn-primary btn-sm mr-1'>View</Link>
-                            <Link to={`/portal/user-edit/${user.id_clienta}`} className='btn btn-info btn-sm mr-1'>Edit</Link>
-                            <button onClick={() => handleDelete(user.id_clienta)} className='btn btn-danger btn-sm mr-1'>Delete</button>
+                            <Link to={`/portal/discipline_list/${clases.id_clase}`} className='btn btn-primary btn-sm mr-1'>View</Link>
+                            <Link to={`/portal/discipline_list/${clases.id_clase}`} className='btn btn-info btn-sm mr-1'>Edit</Link>
+                            <button onClick={() => handleDelete(clases.id_clase)} className='btn btn-danger btn-sm mr-1'>Delete</button>
                           </th>
                         </tr>
                       )
@@ -107,4 +99,4 @@ function Userlist() {
   )
 }
 
-export default Userlist
+export default Clases

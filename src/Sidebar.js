@@ -1,4 +1,5 @@
-import { faFaceLaughWink, faFootball, faSprout, faTachographDigital, faUsers } from '@fortawesome/free-solid-svg-icons'
+import { faCalendar, faCalendarAlt } from '@fortawesome/free-regular-svg-icons'
+import { faBaseball, faCalendarDay, faFaceLaughWink, faFootball, faInstitution, faSprout, faTachographDigital, faUsers } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
 import { Link } from 'react-router-dom'
@@ -37,9 +38,46 @@ function Sidebar() {
             </li>
             {/* <!-- Nav Item - Discipline --> */}
             <li className="nav-item active">
-                <Link className="nav-link" to="/portal/discipline_list">
+                <Link className="nav-link" to="/portal/discipline-list">
                     <FontAwesomeIcon icon={faFootball} style={{ marginRight: "0.5rem" }} />
                     <span>Disciplina</span>
+                </Link>
+            </li>
+            {/* <!-- Nav Item - Clase --> */}
+            <li className="nav-item active">
+                <Link className="nav-link" to="/portal/clases-list">
+                    <FontAwesomeIcon icon={faCalendarAlt} style={{ marginRight: "0.5rem" }} />
+                    <span>Clases</span>
+                </Link>
+            </li>
+            {/* <!-- Nav Item - Clase --> */}
+            <li className="nav-item active">
+                <Link className="nav-link" to="/portal/instructores-list">
+                    <FontAwesomeIcon icon={faInstitution} style={{ marginRight: "0.5rem" }} />
+                    <span>Instructores</span>
+                </Link>
+            </li>
+
+            {/* <!-- Nav Item - Clase --> */}
+            <li className="nav-item active">
+                <Link className="nav-link" to="/portal/horario-clase-list">
+                    <FontAwesomeIcon icon={faCalendarDay} style={{ marginRight: "0.5rem" }} />
+                    <span>Horario de las Clases</span>
+                </Link>
+            </li>
+
+            {/* <!-- Nav Item - Cantidad de Disciplinas --> */}
+            <li className="nav-item active">
+                <Link className="nav-link" to="/portal/cant-discipline-list">
+                    <FontAwesomeIcon icon={faCalendar} style={{ marginRight: "0.5rem" }} />
+                    <span>Cantidad Clases por Disciplina</span>
+                </Link>
+            </li>
+            {/* <!-- Nav Item - Clienta por Disciplina --> */}
+            <li className="nav-item active">
+                <Link className="nav-link" to="/portal/clienta-disciplina-list">
+                    <FontAwesomeIcon icon={faBaseball} style={{ marginRight: "0.5rem" }} />
+                    <span>Clienta por Disciplina</span>
                 </Link>
             </li>
 

@@ -5,21 +5,21 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { faFootball } from '@fortawesome/free-solid-svg-icons'
 
-function Disciplinelist() {
+function ClientaDisciplina() {
 
-  const [disciplineList, setDisciplineList] = useState([]);
+  const [clientaClasesList, setclientaClasesList] = useState([]);
   const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
     //On Load
-    getDiscipline();
+    getclientaClases();
     console.log("welcome");
   }, []);
 
-  let getDiscipline = async () => {
+  let getclientaClases = async () => {
     try {
-      const disciplina = await axios.get("http://localhost:8000/api/disciplinas/");
-      setDisciplineList(disciplina.data);
+      const disciplina = await axios.get("http://localhost:8000/api/clientas-disciplina/");
+      setclientaClasesList(disciplina.data);
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -31,7 +31,7 @@ function Disciplinelist() {
       const confirmDelete = window.confirm("Are you sure do you want to delete the data?");
       if (confirmDelete) {
         await axios.delete(`${id}`);
-        getDiscipline();
+        getclientaClases();
       }
     } catch (error) {
       console.log(error);
@@ -41,10 +41,10 @@ function Disciplinelist() {
   return (
     <>
       <div className="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 className="h3 mb-0 text-gray-800">Discipline-List</h1>
+        <h1 className="h3 mb-0 text-gray-800"> Clienta-Discipline-List</h1>
         <Link to="/portal/create-user" className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
           <FontAwesomeIcon icon={faFootball} className="creatinguser mr-2" />
-          Agregar Disciplina
+          Asociar Clienta a Disciplina
         </Link>
       </div>
       {/* <!-- DataTables --> */}
@@ -71,28 +71,34 @@ function Disciplinelist() {
                   <tfoot>
                     <tr>
                       <th>Id</th>
+                      <th>Id Clienta</th>
+                      <th>Id Disciplina</th>
                       <th>Nombre Disciplina</th>
-                      <th>Descripcion Disciplina</th>
-                      <th>Rango Horario</th>
-                      <th>Instructor</th>
-                      <th>Cantidad de Clases por Disciplina</th>
+                      <th>Nombre Disciplina Contratada</th>
+                      <th>Duracion</th>
+                      <th>Fecha Inscripcion</th>
+                      <th>Fecha Termino</th>
+                      <th>Estado Membresia</th>
                       <th>Action</th>
                     </tr>
                   </tfoot>
                   <tbody>
-                    {disciplineList.map((disciplina) => {
+                    {clientaClasesList.map((clientaClases) => {
                       return (
                         <tr>
-                          <td>{disciplina.id_disciplina}</td>
-                          <td>{disciplina.nombre_disciplina}</td>
-                          <td>{disciplina.descripcion_disciplina}</td>
-                          <td>{disciplina.rango_horarios}</td>
-                          <td>{disciplina.id_instructor}</td>
-                          <td>{disciplina.id_cantidad_clases_disciplina}</td>
+                          <td>{clientaClases.id_clienta_disciplina}</td>
+                          <td>{clientaClases.clientas_id_clienta}</td>
+                          <td>{clientaClases.disciplinas_id_disciplina}</td>
+                          <td>{clientaClases.nombre_disciplina}</td>
+                          <td>{clientaClases.nombre_disciplina_contratada}</td>
+                          <td>{clientaClases.duracion_disciplina}</td>
+                          <td>{clientaClases.fecha_inscripcion}</td>
+                          <td>{clientaClases.fecha_termino}</td>
+                          <td>{clientaClases.estado_membresia}</td>
                           <th>
-                            <Link to={`/portal/discipline_list/${disciplina.id_disciplina}`} className='btn btn-primary btn-sm mr-1'>View</Link>
-                            <Link to={`/portal/discipline_list/${disciplina.id_disciplina}`} className='btn btn-info btn-sm mr-1'>Edit</Link>
-                            <button onClick={() => handleDelete(disciplina.id_disciplina)} className='btn btn-danger btn-sm mr-1'>Delete</button>
+                            <Link to={`/portal/discipline_list/${clientaClases.id_disciplina}`} className='btn btn-primary btn-sm mr-1'>View</Link>
+                            <Link to={`/portal/discipline_list/${clientaClases.id_disciplina}`} className='btn btn-info btn-sm mr-1'>Edit</Link>
+                            <button onClick={() => handleDelete(clientaClases.id_disciplina)} className='btn btn-danger btn-sm mr-1'>Delete</button>
                           </th>
                         </tr>
                       )
@@ -108,4 +114,4 @@ function Disciplinelist() {
   )
 }
 
-export default Disciplinelist
+export default ClientaDisciplina

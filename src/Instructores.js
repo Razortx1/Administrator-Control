@@ -1,24 +1,25 @@
-import { faUser } from '@fortawesome/free-regular-svg-icons'
+import { faCalendarAlt, faUser } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import { faInstitution } from '@fortawesome/free-solid-svg-icons'
 
-function Userlist() {
+function Instructores() {
 
-  const [userList, setUserList] = useState([]);
+  const [instructoresList, setInstructoresList] = useState([]);
   const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
     //On Load
-    getUsers();
+    getInstructores();
     console.log("welcome");
   }, []);
 
-  let getUsers = async () => {
+  let getInstructores = async () => {
     try {
-      const users = await axios.get("http://localhost:8000/api/clientas/");
-      setUserList(users.data);
+      const clases = await axios.get("http://localhost:8000/api/instructores/");
+      setInstructoresList(clases.data);
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -30,7 +31,7 @@ function Userlist() {
       const confirmDelete = window.confirm("Are you sure do you want to delete the data?");
       if (confirmDelete) {
         await axios.delete(`${id}`);
-        getUsers();
+        getInstructores();
       }
     } catch (error) {
       console.log(error);
@@ -40,10 +41,10 @@ function Userlist() {
   return (
     <>
       <div className="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 className="h3 mb-0 text-gray-800">User-List</h1>
+        <h1 className="h3 mb-0 text-gray-800">Instructores-List</h1>
         <Link to="/portal/create-user" className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-          <FontAwesomeIcon icon={faUser} className="creatinguser mr-2" />
-          Agregar Usuario
+          <FontAwesomeIcon icon={faInstitution} className="creatinguser mr-2" />
+          Agregar Instructores
         </Link>
       </div>
       {/* <!-- DataTables --> */}
@@ -59,39 +60,36 @@ function Userlist() {
                   <thead>
                     <tr>
                       <th>Id</th>
-                      <th>Nombres</th>
+                      <th>Nombres Instructor</th>
                       <th>Apellido Paterno</th>
                       <th>Apellido Materno</th>
-                      <th>Direccion</th>
-                      <th>Estado Civil</th>
+                      <th>Activo</th>
                       <th>Action</th>
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
                       <th>Id</th>
-                      <th>Nombres</th>
+                      <th>Nombres Instructor</th>
                       <th>Apellido Paterno</th>
                       <th>Apellido Materno</th>
-                      <th>Direccion</th>
-                      <th>Estado Civil</th>
+                      <th>Activo</th>
                       <th>Action</th>
                     </tr>
                   </tfoot>
                   <tbody>
-                    {userList.map((user) => {
+                    {instructoresList.map((instructor) => {
                       return (
                         <tr>
-                          <td>{user.id_clienta}</td>
-                          <td>{user.nombres}</td>
-                          <td>{user.apellido_paterno}</td>
-                          <td>{user.apellido_materno}</td>
-                          <td>{user.direccion}</td>
-                          <td>{user.id_estado_civil}</td>
+                          <td>{instructor.id_instructor}</td>
+                          <td>{instructor.nombres}</td>
+                          <td>{instructor.apellido_paterno}</td>
+                          <td>{instructor.apellido_materno}</td>
+                          <td>{instructor.esta_activo}</td>
                           <th>
-                            <Link to={`/portal/user-view/${user.id_clienta}`} className='btn btn-primary btn-sm mr-1'>View</Link>
-                            <Link to={`/portal/user-edit/${user.id_clienta}`} className='btn btn-info btn-sm mr-1'>Edit</Link>
-                            <button onClick={() => handleDelete(user.id_clienta)} className='btn btn-danger btn-sm mr-1'>Delete</button>
+                            <Link to={`/portal/discipline_list/${instructor.id_instructor}`} className='btn btn-primary btn-sm mr-1'>View</Link>
+                            <Link to={`/portal/discipline_list/${instructor.id_instructor}`} className='btn btn-info btn-sm mr-1'>Edit</Link>
+                            <button onClick={() => handleDelete(instructor.id_instructor)} className='btn btn-danger btn-sm mr-1'>Delete</button>
                           </th>
                         </tr>
                       )
@@ -107,4 +105,4 @@ function Userlist() {
   )
 }
 
-export default Userlist
+export default Instructores

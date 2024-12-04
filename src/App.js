@@ -12,6 +12,11 @@ import UserCreate from './UserCreate';
 import UserView from './UserView';
 import UserEdit from './UserEdit';
 import Disciplinelist from './Disciplinelist';
+import CantiDisciplineClass from './CantiDisciplinaClass';
+import ClientaDisciplina from './ClientaDisciplina';
+import Clases from './Clases';
+import Instructores from './Instructores';
+import HorarioClase from './HorarioClase';
 
 function App() {
   return (
@@ -26,8 +31,25 @@ function App() {
           <Route path='create-user' element={<UserCreate />} />
           <Route path='user-view/:id' element={<UserView />} />
           <Route path='user-edit/:id' element={<UserEdit />} />
+          
           {/* <!-- URLS - Discipline --> */}
-          <Route path='discipline_list' element={<Disciplinelist />}></Route>
+          <Route path='discipline-list' element={<Disciplinelist />}></Route>
+
+          {/* <!-- URLS - Clienta Has Clases --> */}
+          <Route path='clienta-disciplina-list' element={<ClientaDisciplina />}></Route>
+
+          {/* <!-- URLS - Cuantity Discipline for Class --> */}
+          <Route path='cant-discipline-list' element={<CantiDisciplineClass />}></Route>
+
+          {/* <!-- URLS - Clases --> */}
+          <Route path='clases-list' element={<Clases />}></Route>
+
+          {/* <!-- URLS - Instructores --> */}
+          <Route path='instructores-list' element={<Instructores />}></Route>
+
+          {/* <!-- URLS - HorarioClase --> */}
+          <Route path='horario-clase-list' element={<HorarioClase />}></Route>
+
         </Route>
       </Routes>
     </BrowserRouter>

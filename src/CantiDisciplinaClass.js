@@ -1,24 +1,24 @@
-import { faUser } from '@fortawesome/free-regular-svg-icons'
+import { faCalendar, faUser } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 
-function Userlist() {
+function CantiDisciplineClass() {
 
-  const [userList, setUserList] = useState([]);
+  const [candisciplineList, setcanDisciplinaList] = useState([]);
   const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
     //On Load
-    getUsers();
+    getcanDiscipline();
     console.log("welcome");
   }, []);
 
-  let getUsers = async () => {
+  let getcanDiscipline = async () => {
     try {
-      const users = await axios.get("http://localhost:8000/api/clientas/");
-      setUserList(users.data);
+      const users = await axios.get("http://localhost:8000/api/cantidad-clase-disciplina/");
+      setcanDisciplinaList(users.data);
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -30,7 +30,7 @@ function Userlist() {
       const confirmDelete = window.confirm("Are you sure do you want to delete the data?");
       if (confirmDelete) {
         await axios.delete(`${id}`);
-        getUsers();
+        getcanDiscipline();
       }
     } catch (error) {
       console.log(error);
@@ -40,10 +40,10 @@ function Userlist() {
   return (
     <>
       <div className="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 className="h3 mb-0 text-gray-800">User-List</h1>
+        <h1 className="h3 mb-0 text-gray-800">Cantidad-Clases-Diciplina-List</h1>
         <Link to="/portal/create-user" className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-          <FontAwesomeIcon icon={faUser} className="creatinguser mr-2" />
-          Agregar Usuario
+          <FontAwesomeIcon icon={faCalendar} className="creatinguser mr-2" />
+          Agregar Clases por Disciplina
         </Link>
       </div>
       {/* <!-- DataTables --> */}
@@ -59,39 +59,25 @@ function Userlist() {
                   <thead>
                     <tr>
                       <th>Id</th>
-                      <th>Nombres</th>
-                      <th>Apellido Paterno</th>
-                      <th>Apellido Materno</th>
-                      <th>Direccion</th>
-                      <th>Estado Civil</th>
-                      <th>Action</th>
+                      <th>Cantidad de Clases</th>
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
                       <th>Id</th>
-                      <th>Nombres</th>
-                      <th>Apellido Paterno</th>
-                      <th>Apellido Materno</th>
-                      <th>Direccion</th>
-                      <th>Estado Civil</th>
-                      <th>Action</th>
+                      <th>Cantidad de Clases</th>
                     </tr>
                   </tfoot>
                   <tbody>
-                    {userList.map((user) => {
+                    {candisciplineList.map((candisciplineclass) => {
                       return (
                         <tr>
-                          <td>{user.id_clienta}</td>
-                          <td>{user.nombres}</td>
-                          <td>{user.apellido_paterno}</td>
-                          <td>{user.apellido_materno}</td>
-                          <td>{user.direccion}</td>
-                          <td>{user.id_estado_civil}</td>
+                          <td>{candisciplineclass.id_cantidad_clases_disciplina}</td>
+                          <td>{candisciplineclass.cantidad_clases}</td>
                           <th>
-                            <Link to={`/portal/user-view/${user.id_clienta}`} className='btn btn-primary btn-sm mr-1'>View</Link>
-                            <Link to={`/portal/user-edit/${user.id_clienta}`} className='btn btn-info btn-sm mr-1'>Edit</Link>
-                            <button onClick={() => handleDelete(user.id_clienta)} className='btn btn-danger btn-sm mr-1'>Delete</button>
+                            <Link to={`/portal/cant-discipline-list/${candisciplineclass.id_cantidad_clases_disciplina}`} className='btn btn-primary btn-sm mr-1'>View</Link>
+                            <Link to={`/portal/cant-discipline-list/${candisciplineclass.id_cantidad_clases_disciplina}`} className='btn btn-info btn-sm mr-1'>Edit</Link>
+                            <button onClick={() => handleDelete(candisciplineclass.id_cantidad_clases_disciplina)} className='btn btn-danger btn-sm mr-1'>Delete</button>
                           </th>
                         </tr>
                       )
@@ -107,4 +93,4 @@ function Userlist() {
   )
 }
 
-export default Userlist
+export default CantiDisciplineClass
