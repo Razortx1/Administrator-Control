@@ -93,9 +93,9 @@ function HorarioClase() {
                           <td>{horarioclase.cupo}</td>
                           <td>{horarioclase.clases_id_clase}</td>
                           <th>
-                            <Link to={`/portal/discipline_list/${horarioclase.id_disciplina}`} className='btn btn-primary btn-sm mr-1'>View</Link>
-                            <Link to={`/portal/discipline_list/${horarioclase.id_disciplina}`} className='btn btn-info btn-sm mr-1'>Edit</Link>
-                            <button onClick={() => handleDelete(horarioclase.id_disciplina)} className='btn btn-danger btn-sm mr-1'>Delete</button>
+                            <Link to={`/portal/horario-clase-view/${horarioclase.idhorarios}`} className='btn btn-primary btn-sm mr-1'>View</Link>
+                            <Link to={`/portal/horario-clase-view/${horarioclase.idhorarios}`} className='btn btn-info btn-sm mr-1'>Edit</Link>
+                            <button onClick={() => handleDelete(horarioclase.idhorarios)} className='btn btn-danger btn-sm mr-1'>Delete</button>
                           </th>
                         </tr>
                       )

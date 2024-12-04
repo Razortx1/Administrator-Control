@@ -27,38 +27,31 @@ function UserEdit() {
             apellido_Paterno: "",
             apellido_Materno: "",
             direccion: "",
-            estado_Civil: ""
+            estado_Civil: 0
         },
         // Validating Forms while entering the data
         validate: (values) => {
             let errors = {}           //Validating the form once the error returns empty else onsubmit won't work
 
-            if (!values.username) {
-                errors.username = "Please enter username";
-            } else if (values.username.length < 5) {
-                errors.username = "Name shouldn't be less than 3 letters";
-            } else if (values.username.length > 25) {
-                errors.username = "Name shouldn't be more than 20 letters";
+            if (!values.nombres) {
+                errors.nombres = "Debes ingresar tus nombres";
             }
 
-            if (!values.email) {
-                errors.email = "Please enter email";
-            } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-                errors.email = 'Invalid email address';
+            if (!values.apellido_Paterno) {
+                errors.apellido_Paterno = "Debes ingresar tu apellido paterno";
             }
 
-            if (!values.city) {
-                errors.city = "Please select any one city";
+            if (!values.apellido_Materno) {
+                errors.apellido_Materno = "Debes ingresar tu apellido paterno";
             }
 
-            if (!values.state) {
-                errors.state = "Please select any one state";
+            if (!values.direccion) {
+                errors.direccion = "Debes dar la direccion de tu hogar";
             }
 
-            if (!values.country) {
-                errors.country = "Please select any one state";
+            if (!values.estado_Civil) {
+                errors.estado_Civil = "Debes ingresar su estado civil";
             }
-
             return errors;
         },
 
@@ -83,56 +76,40 @@ function UserEdit() {
                         <div className="col-lg-6">
                             <label>Nombres</label>
                             <input name='nombres' value={myFormik.values.nombres} onChange={myFormik.handleChange} type={"text"}
-                                className={`form-control ${myFormik.errors.username ? "is-invalid" : ""} `} />
-                            <span style={{ color: "red" }}>{myFormik.errors.username}</span>
+                                className={`form-control ${myFormik.errors.nombres ? "is-invalid" : ""} `} />
+                            <span style={{ color: "red" }}>{myFormik.errors.nombres}</span>
                         </div>
 
                         <div className="col-lg-6">
-                            <label>E-Mail</label>
-                            <input name='email' value={myFormik.values.email} onChange={myFormik.handleChange} type={"mail"}
-                                className={`form-control ${myFormik.errors.email ? "is-invalid" : ""} `} />
-                            <span style={{ color: "red" }}>{myFormik.errors.email}</span>
+                            <label>Apellido Paterno</label>
+                            <input name='apellido_paterno' value={myFormik.values.apellido_Paterno} onChange={myFormik.handleChange} type={"text"}
+                                className={`form-control ${myFormik.errors.apellido_Paterno ? "is-invalid" : ""} `} />
+                            <span style={{ color: "red" }}>{myFormik.errors.apellido_Paterno}</span>
                         </div>
 
                         <div className='col-lg-4'>
-                            <label>City</label>
-                            <select name='city' value={myFormik.values.city} onChange={myFormik.handleChange}
-                                className={`form-control ${myFormik.errors.city ? "is-invalid" : ""} `} >
-                                <option value="">----Select----</option>
-                                <option value="CN">Chennai</option>
-                                <option value="KN">Kochin</option>
-                                <option value="MU">Mumbai</option>
-                                <option value="SA">Seattle</option>
-                                <option value="MI">Miami</option>
-                                <option value="VB">Virginia Beach</option>
-                            </select>
-                            <span style={{ color: "red" }}>{myFormik.errors.city}</span>
+                            <label>Apellido Materno</label>
+                            <input name='apellido_materno' value={myFormik.values.apellido_Materno} onChange={myFormik.handleChange}
+                                className={`form-control ${myFormik.errors.apellido_Materno ? "is-invalid" : ""} `} />
+                            <span style={{ color: "red" }}>{myFormik.errors.apellido_Materno}</span>
                         </div>
 
                         <div className='col-lg-4'>
-                            <label>State</label>
-                            <select name='state' value={myFormik.values.state} onChange={myFormik.handleChange}
-                                className={`form-control ${myFormik.errors.state ? "is-invalid" : ""} `} >
-                                <option value="">----Select----</option>
-                                <option value="TN">TamilNadu</option>
-                                <option value="KL">Kerala</option>
-                                <option value="MH">Maharashtra</option>
-                                <option value="WA">Washington</option>
-                                <option value="FL">Florida</option>
-                                <option value="VA">Virginia</option>
-                            </select>
-                            <span style={{ color: "red" }}>{myFormik.errors.state}</span>
+                            <label>Direccion</label>
+                            <input name='direccion' value={myFormik.values.direccion} onChange={myFormik.handleChange}
+                                className={`form-control ${myFormik.errors.direccion ? "is-invalid" : ""} `} />
+                            <span style={{ color: "red" }}>{myFormik.errors.direccion}</span>
                         </div>
 
                         <div className='col-lg-4'>
-                            <label>Country</label>
-                            <select name='country' value={myFormik.values.country} onChange={myFormik.handleChange}
-                                className={`form-control ${myFormik.errors.country ? "is-invalid" : ""} `} >
-                                <option value="">----Select----</option>
-                                <option value="IN">India</option>
-                                <option value="US">USA</option>
+                            <label>Estado Civil</label>
+                            <select name='estado_civil' value={myFormik.values.estado_Civil} onChange={myFormik.handleChange}
+                                className={`form-control ${myFormik.errors.estado_Civil ? "is-invalid" : ""} `}>
+                                <option value=''>-----Selecciona------</option>
+                                <option value='1'>Casada</option>
+                                <option value='2'>Soltera</option>
                             </select>
-                            <span style={{ color: "red" }}>{myFormik.errors.country}</span>
+                            <span style={{ color: "red" }}>{myFormik.errors.estado_Civil}</span>
                         </div>
 
                         <div className='col-lg-4 mt-3'>

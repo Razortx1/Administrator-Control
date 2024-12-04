@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-function UserView() {
+function CantidadClaseDisciplinaView() {
   const params = useParams();
-  const [userList, setUserList] = useState([]);
+  const [candisciplineclassList, setcandisciplineclassList] = useState([]);
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     // On Load
-    getUsers();
+    getcantidadClaseDisciplina();
     console.log("welcome to userview");
   }, []);
 
-  let getUsers = async () => {
+  let getcantidadClaseDisciplina = async () => {
     try {
-      const response = await fetch(`http://localhost:8000/api/clientas/${params.id}/`, {
+      const response = await fetch(`http://localhost:8000/api/cantidad-clase-disciplina/${params.id}/`, {
         method: 'GET',
         headers: new Headers({ 'Content-type': 'application/json'}),
         mode: 'cors'
@@ -24,9 +24,9 @@ function UserView() {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      const user = await response.json(); // Parseamos el JSON de la respuesta
-      console.log(user);
-      setUserList(user);
+      const disciplina = await response.json(); // Parseamos el JSON de la respuesta
+      console.log(disciplina);
+      setcandisciplineclassList(disciplina);
       setLoading(false);
     } catch (error) {
       console.log("Error al obtener los datos:", error);
@@ -36,10 +36,10 @@ function UserView() {
 
   return (
     <>
-      <div>UserView - {params.id}</div>
+      <div>Horario Clase - {params.id}</div>
       <div className="card shadow mb-4">
         <div className="card-header py-3">
-          <h6 className="m-0 font-weight-bold text-primary">UserView</h6>
+          <h6 className="m-0 font-weight-bold text-primary">HorarioClaseView</h6>
         </div>
         <div className="card-body">
           {isLoading ? (
@@ -53,33 +53,21 @@ function UserView() {
                 cellSpacing="0"
               >
                 <thead>
-                  <tr>
+                    <tr>
                     <th>Id</th>
-                    <th>Nombres</th>
-                    <th>Apellido Paterno</th>
-                    <th>Apellido Materno</th>
-                    <th>Direccion</th>
-                    <th>Estado Civil</th>
-                  </tr>
-                </thead>
-                <tfoot>
-                  <tr>
+                    <th>Cantidad de Clases</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
                     <th>Id</th>
-                    <th>Nombres</th>
-                    <th>Apellido Paterno</th>
-                    <th>Apellido Materno</th>
-                    <th>Direccion</th>
-                    <th>Estado Civil</th>
-                  </tr>
-                </tfoot>
+                    <th>Cantidad de Clases</th>
+                    </tr>
+                  </tfoot>
                 <tbody>
                   <tr>
-                    <td>{userList.id}</td>
-                    <td>{userList.nombres}</td>
-                    <td>{userList.apellido_paterno}</td>
-                    <td>{userList.apellido_materno}</td>
-                    <td>{userList.direccion}</td>
-                    <td>{userList.id_estado_civil}</td>
+                    <td>{candisciplineclassList.id_cantidad_clases_disciplina}</td>
+                    <td>{candisciplineclassList.cantidad_clases}</td>
                   </tr>
                 </tbody>
               </table>
@@ -91,4 +79,4 @@ function UserView() {
   );
 }
 
-export default UserView;
+export default CantidadClaseDisciplinaView;

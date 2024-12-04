@@ -96,9 +96,9 @@ function ClientaDisciplina() {
                           <td>{clientaClases.fecha_termino}</td>
                           <td>{clientaClases.estado_membresia}</td>
                           <th>
-                            <Link to={`/portal/discipline_list/${clientaClases.id_disciplina}`} className='btn btn-primary btn-sm mr-1'>View</Link>
-                            <Link to={`/portal/discipline_list/${clientaClases.id_disciplina}`} className='btn btn-info btn-sm mr-1'>Edit</Link>
-                            <button onClick={() => handleDelete(clientaClases.id_disciplina)} className='btn btn-danger btn-sm mr-1'>Delete</button>
+                            <Link to={`/portal/clienta-disciplina-view/${clientaClases.id_clienta_disciplina}`} className='btn btn-primary btn-sm mr-1'>View</Link>
+                            <Link to={`/portal/clienta-disciplina-view/${clientaClases.id_clienta_disciplina}`} className='btn btn-info btn-sm mr-1'>Edit</Link>
+                            <button onClick={() => handleDelete(clientaClases.id_clienta_disciplina)} className='btn btn-danger btn-sm mr-1'>Delete</button>
                           </th>
                         </tr>
                       )

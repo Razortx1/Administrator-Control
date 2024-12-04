@@ -17,6 +17,12 @@ import ClientaDisciplina from './ClientaDisciplina';
 import Clases from './Clases';
 import Instructores from './Instructores';
 import HorarioClase from './HorarioClase';
+import DisciplinaView from './DisciplineView';
+import ClaseView from './ClaseView';
+import InstructorView from './InstructorView';
+import HorarioClaseView from './HorarioClaseView';
+import CantidadClaseDisciplinaView from './CantiDisciplinaClassView';
+import ClientaDisciplinaView from './ClientaDisciplinaView';
 
 function App() {
   return (
@@ -34,21 +40,28 @@ function App() {
           
           {/* <!-- URLS - Discipline --> */}
           <Route path='discipline-list' element={<Disciplinelist />}></Route>
+          <Route path='create-discipline' element={<UserCreate />} />
+          <Route path='discipline-view/:id' element={<DisciplinaView />}></Route>
 
-          {/* <!-- URLS - Clienta Has Clases --> */}
+          {/* <!-- URLS - Clienta Has Disciplina --> */}
           <Route path='clienta-disciplina-list' element={<ClientaDisciplina />}></Route>
+          <Route path='clienta-disciplina-view/:id' element={<ClientaDisciplinaView />}></Route>
 
           {/* <!-- URLS - Cuantity Discipline for Class --> */}
           <Route path='cant-discipline-list' element={<CantiDisciplineClass />}></Route>
+          <Route path='cant-discipline-view/:id' element={<CantidadClaseDisciplinaView />}></Route>
 
           {/* <!-- URLS - Clases --> */}
           <Route path='clases-list' element={<Clases />}></Route>
+          <Route path='clases-view/:id' element={<ClaseView />}></Route>
 
           {/* <!-- URLS - Instructores --> */}
           <Route path='instructores-list' element={<Instructores />}></Route>
+          <Route path='instructor-view/:id' element={<InstructorView />}></Route>
 
           {/* <!-- URLS - HorarioClase --> */}
           <Route path='horario-clase-list' element={<HorarioClase />}></Route>
+          <Route path='horario-clase-view/:id' element={<HorarioClaseView />}></Route>
 
         </Route>
       </Routes>

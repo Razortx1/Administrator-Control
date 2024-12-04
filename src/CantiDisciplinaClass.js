@@ -75,8 +75,8 @@ function CantiDisciplineClass() {
                           <td>{candisciplineclass.id_cantidad_clases_disciplina}</td>
                           <td>{candisciplineclass.cantidad_clases}</td>
                           <th>
-                            <Link to={`/portal/cant-discipline-list/${candisciplineclass.id_cantidad_clases_disciplina}`} className='btn btn-primary btn-sm mr-1'>View</Link>
-                            <Link to={`/portal/cant-discipline-list/${candisciplineclass.id_cantidad_clases_disciplina}`} className='btn btn-info btn-sm mr-1'>Edit</Link>
+                            <Link to={`/portal/cant-discipline-view/${candisciplineclass.id_cantidad_clases_disciplina}`} className='btn btn-primary btn-sm mr-1'>View</Link>
+                            <Link to={`/portal/cant-discipline-view/${candisciplineclass.id_cantidad_clases_disciplina}`} className='btn btn-info btn-sm mr-1'>Edit</Link>
                             <button onClick={() => handleDelete(candisciplineclass.id_cantidad_clases_disciplina)} className='btn btn-danger btn-sm mr-1'>Delete</button>
                           </th>
                         </tr>

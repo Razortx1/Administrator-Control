@@ -42,7 +42,7 @@ function Disciplinelist() {
     <>
       <div className="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 className="h3 mb-0 text-gray-800">Discipline-List</h1>
-        <Link to="/portal/create-user" className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+        <Link to="/portal/create-discipline" className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
           <FontAwesomeIcon icon={faFootball} className="creatinguser mr-2" />
           Agregar Disciplina
         </Link>
@@ -90,8 +90,8 @@ function Disciplinelist() {
                           <td>{disciplina.id_instructor}</td>
                           <td>{disciplina.id_cantidad_clases_disciplina}</td>
                           <th>
-                            <Link to={`/portal/discipline_list/${disciplina.id_disciplina}`} className='btn btn-primary btn-sm mr-1'>View</Link>
-                            <Link to={`/portal/discipline_list/${disciplina.id_disciplina}`} className='btn btn-info btn-sm mr-1'>Edit</Link>
+                            <Link to={`/portal/discipline-view/${disciplina.id_disciplina}`} className='btn btn-primary btn-sm mr-1'>View</Link>
+                            <Link to={`/portal/discipline-view/${disciplina.id_disciplina}`} className='btn btn-info btn-sm mr-1'>Edit</Link>
                             <button onClick={() => handleDelete(disciplina.id_disciplina)} className='btn btn-danger btn-sm mr-1'>Delete</button>
                           </th>
                         </tr>

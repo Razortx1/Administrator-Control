@@ -81,8 +81,8 @@ function Clases() {
                           <td>{clases.nombre_clase}</td>
                           <td>{clases.id_disciplina}</td>
                           <th>
-                            <Link to={`/portal/discipline_list/${clases.id_clase}`} className='btn btn-primary btn-sm mr-1'>View</Link>
-                            <Link to={`/portal/discipline_list/${clases.id_clase}`} className='btn btn-info btn-sm mr-1'>Edit</Link>
+                            <Link to={`/portal/clases-view/${clases.id_clase}`} className='btn btn-primary btn-sm mr-1'>View</Link>
+                            <Link to={`/portal/clases-view/${clases.id_clase}`} className='btn btn-info btn-sm mr-1'>Edit</Link>
                             <button onClick={() => handleDelete(clases.id_clase)} className='btn btn-danger btn-sm mr-1'>Delete</button>
                           </th>
                         </tr>

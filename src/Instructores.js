@@ -87,8 +87,8 @@ function Instructores() {
                           <td>{instructor.apellido_materno}</td>
                           <td>{instructor.esta_activo}</td>
                           <th>
-                            <Link to={`/portal/discipline_list/${instructor.id_instructor}`} className='btn btn-primary btn-sm mr-1'>View</Link>
-                            <Link to={`/portal/discipline_list/${instructor.id_instructor}`} className='btn btn-info btn-sm mr-1'>Edit</Link>
+                            <Link to={`/portal/instructor-view/${instructor.id_instructor}`} className='btn btn-primary btn-sm mr-1'>View</Link>
+                            <Link to={`/portal/instructor-view/${instructor.id_instructor}`} className='btn btn-info btn-sm mr-1'>Edit</Link>
                             <button onClick={() => handleDelete(instructor.id_instructor)} className='btn btn-danger btn-sm mr-1'>Delete</button>
                           </th>
                         </tr>
