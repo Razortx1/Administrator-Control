@@ -40,7 +40,7 @@ function Userlist() {
   return (
     <>
       <div className="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 className="h3 mb-0 text-gray-800">User-List</h1>
+        <h1 className="h3 mb-0 text-gray-800">Lista de Usuarios</h1>
         <Link to="/portal/create-user" className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
           <FontAwesomeIcon icon={faUser} className="creatinguser mr-2" />
           Agregar Usuario
@@ -48,9 +48,6 @@ function Userlist() {
       </div>
       {/* <!-- DataTables --> */}
       <div className="card shadow mb-4">
-        <div className="card-header py-3">
-          <h6 className="m-0 font-weight-bold text-primary">DataTables</h6>
-        </div>
         <div className="card-body">
           {
             isLoading ? <img src='https://media.giphy.com/media/ZO9b1ntYVJmjZlsWlm/giphy.gif' />
@@ -58,7 +55,7 @@ function Userlist() {
                 <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
                   <thead>
                     <tr>
-                      <th>Id</th>
+                      <th>Rut</th>
                       <th>Nombres</th>
                       <th>Apellido Paterno</th>
                       <th>Apellido Materno</th>
@@ -67,27 +64,16 @@ function Userlist() {
                       <th>Action</th>
                     </tr>
                   </thead>
-                  <tfoot>
-                    <tr>
-                      <th>Id</th>
-                      <th>Nombres</th>
-                      <th>Apellido Paterno</th>
-                      <th>Apellido Materno</th>
-                      <th>Direccion</th>
-                      <th>Estado Civil</th>
-                      <th>Action</th>
-                    </tr>
-                  </tfoot>
                   <tbody>
                     {userList.map((user) => {
                       return (
                         <tr>
-                          <td>{user.id_clienta}</td>
+                          <td>{user.rut_clienta}</td>
                           <td>{user.nombres}</td>
                           <td>{user.apellido_paterno}</td>
                           <td>{user.apellido_materno}</td>
                           <td>{user.direccion}</td>
-                          <td>{user.id_estado_civil}</td>
+                          <td>{user.tipo_estado_civil}</td>
                           <th>
                             <Link to={`/portal/user-view/${user.id_clienta}`} className='btn btn-primary btn-sm mr-1'>View</Link>
                             <Link to={`/portal/user-edit/${user.id_clienta}`} className='btn btn-info btn-sm mr-1'>Edit</Link>

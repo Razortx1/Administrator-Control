@@ -14,7 +14,7 @@ import UserEdit from './UserEdit';
 import Disciplinelist from './Disciplinelist';
 import CantiDisciplineClass from './CantiDisciplinaClass';
 import ClientaDisciplina from './ClientaDisciplina';
-import Clases from './Clases';
+import Clases from './Claseslist';
 import Instructores from './Instructores';
 import HorarioClase from './HorarioClase';
 import DisciplinaView from './DisciplineView';

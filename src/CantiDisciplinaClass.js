@@ -40,7 +40,7 @@ function CantiDisciplineClass() {
   return (
     <>
       <div className="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 className="h3 mb-0 text-gray-800">Cantidad-Clases-Diciplina-List</h1>
+        <h1 className="h3 mb-0 text-gray-800">Lista de Cupos por Disciplina</h1>
         <Link to="/portal/create-user" className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
           <FontAwesomeIcon icon={faCalendar} className="creatinguser mr-2" />
           Agregar Clases por Disciplina
@@ -48,9 +48,7 @@ function CantiDisciplineClass() {
       </div>
       {/* <!-- DataTables --> */}
       <div className="card shadow mb-4">
-        <div className="card-header py-3">
-          <h6 className="m-0 font-weight-bold text-primary">DataTables</h6>
-        </div>
+
         <div className="card-body">
           {
             isLoading ? <img src='https://media.giphy.com/media/ZO9b1ntYVJmjZlsWlm/giphy.gif' />
@@ -58,13 +56,11 @@ function CantiDisciplineClass() {
                 <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
                   <thead>
                     <tr>
-                      <th>Id</th>
                       <th>Cantidad de Clases</th>
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
-                      <th>Id</th>
                       <th>Cantidad de Clases</th>
                     </tr>
                   </tfoot>
@@ -72,7 +68,6 @@ function CantiDisciplineClass() {
                     {candisciplineList.map((candisciplineclass) => {
                       return (
                         <tr>
-                          <td>{candisciplineclass.id_cantidad_clases_disciplina}</td>
                           <td>{candisciplineclass.cantidad_clases}</td>
                           <th>
                             <Link to={`/portal/cant-discipline-view/${candisciplineclass.id_cantidad_clases_disciplina}`} className='btn btn-primary btn-sm mr-1'>View</Link>

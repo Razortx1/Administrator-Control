@@ -54,19 +54,6 @@ function ClientaDisciplinaView() {
               >
                 <thead>
                     <tr>
-                    <th>Id</th>
-                      <th>Id Clienta</th>
-                      <th>Id Disciplina</th>
-                      <th>Nombre Disciplina</th>
-                      <th>Nombre Disciplina Contratada</th>
-                      <th>Duracion</th>
-                      <th>Fecha Inscripcion</th>
-                      <th>Fecha Termino</th>
-                      <th>Estado Membresia</th>
-                    </tr>
-                  </thead>
-                  <tfoot>
-                    <tr>
                       <th>Id</th>
                       <th>Id Clienta</th>
                       <th>Id Disciplina</th>
@@ -77,7 +64,7 @@ function ClientaDisciplinaView() {
                       <th>Fecha Termino</th>
                       <th>Estado Membresia</th>
                     </tr>
-                  </tfoot>
+                  </thead>
                 <tbody>
                   <tr>
                     <td>{ClientaDisciplinaList.id_clienta_disciplina}</td>

@@ -41,7 +41,7 @@ function ClientaDisciplina() {
   return (
     <>
       <div className="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 className="h3 mb-0 text-gray-800"> Clienta-Discipline-List</h1>
+        <h1 className="h3 mb-0 text-gray-800"> Lista de Disciplinas por Clienta</h1>
         <Link to="/portal/create-user" className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
           <FontAwesomeIcon icon={faFootball} className="creatinguser mr-2" />
           Asociar Clienta a Disciplina
@@ -49,9 +49,6 @@ function ClientaDisciplina() {
       </div>
       {/* <!-- DataTables --> */}
       <div className="card shadow mb-4">
-        <div className="card-header py-3">
-          <h6 className="m-0 font-weight-bold text-primary">DataTables</h6>
-        </div>
         <div className="card-body">
           {
             isLoading ? <img src='https://media.giphy.com/media/ZO9b1ntYVJmjZlsWlm/giphy.gif' />
@@ -59,20 +56,7 @@ function ClientaDisciplina() {
                 <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
                   <thead>
                     <tr>
-                      <th>Id</th>
-                      <th>Nombre Disciplina</th>
-                      <th>Descripcion Disciplina</th>
-                      <th>Rango Horario</th>
-                      <th>Instructor</th>
-                      <th>Cantidad de Clases por Disciplina</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tfoot>
-                    <tr>
-                      <th>Id</th>
-                      <th>Id Clienta</th>
-                      <th>Id Disciplina</th>
+                      <th>Nombre Clienta</th>
                       <th>Nombre Disciplina</th>
                       <th>Nombre Disciplina Contratada</th>
                       <th>Duracion</th>
@@ -81,14 +65,12 @@ function ClientaDisciplina() {
                       <th>Estado Membresia</th>
                       <th>Action</th>
                     </tr>
-                  </tfoot>
+                  </thead>
                   <tbody>
                     {clientaClasesList.map((clientaClases) => {
                       return (
                         <tr>
-                          <td>{clientaClases.id_clienta_disciplina}</td>
-                          <td>{clientaClases.clientas_id_clienta}</td>
-                          <td>{clientaClases.disciplinas_id_disciplina}</td>
+                          <td>{clientaClases.nombre_clienta}</td>
                           <td>{clientaClases.nombre_disciplina}</td>
                           <td>{clientaClases.nombre_disciplina_contratada}</td>
                           <td>{clientaClases.duracion_disciplina}</td>

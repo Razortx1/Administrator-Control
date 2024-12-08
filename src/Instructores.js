@@ -41,7 +41,7 @@ function Instructores() {
   return (
     <>
       <div className="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 className="h3 mb-0 text-gray-800">Instructores-List</h1>
+        <h1 className="h3 mb-0 text-gray-800">Lista de Instructores</h1>
         <Link to="/portal/create-user" className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
           <FontAwesomeIcon icon={faInstitution} className="creatinguser mr-2" />
           Agregar Instructores
@@ -49,9 +49,6 @@ function Instructores() {
       </div>
       {/* <!-- DataTables --> */}
       <div className="card shadow mb-4">
-        <div className="card-header py-3">
-          <h6 className="m-0 font-weight-bold text-primary">DataTables</h6>
-        </div>
         <div className="card-body">
           {
             isLoading ? <img src='https://media.giphy.com/media/ZO9b1ntYVJmjZlsWlm/giphy.gif' />
@@ -59,7 +56,7 @@ function Instructores() {
                 <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
                   <thead>
                     <tr>
-                      <th>Id</th>
+                      <th>Rut</th>
                       <th>Nombres Instructor</th>
                       <th>Apellido Paterno</th>
                       <th>Apellido Materno</th>
@@ -67,21 +64,11 @@ function Instructores() {
                       <th>Action</th>
                     </tr>
                   </thead>
-                  <tfoot>
-                    <tr>
-                      <th>Id</th>
-                      <th>Nombres Instructor</th>
-                      <th>Apellido Paterno</th>
-                      <th>Apellido Materno</th>
-                      <th>Activo</th>
-                      <th>Action</th>
-                    </tr>
-                  </tfoot>
                   <tbody>
                     {instructoresList.map((instructor) => {
                       return (
                         <tr>
-                          <td>{instructor.id_instructor}</td>
+                          <td>{instructor.rut_instructor}</td>
                           <td>{instructor.nombres}</td>
                           <td>{instructor.apellido_paterno}</td>
                           <td>{instructor.apellido_materno}</td>
