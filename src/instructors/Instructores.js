@@ -13,7 +13,6 @@ function Instructores() {
   useEffect(() => {
     //On Load
     getInstructores();
-    console.log("welcome");
   }, []);
 
   let getInstructores = async () => {
@@ -30,7 +29,7 @@ function Instructores() {
     try {
       const confirmDelete = window.confirm("Are you sure do you want to delete the data?");
       if (confirmDelete) {
-        await axios.delete(`${id}`);
+        await axios.delete(`http://localhost:8000/api/instructores/${id}/`);
         getInstructores();
       }
     } catch (error) {
@@ -42,7 +41,7 @@ function Instructores() {
     <>
       <div className="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 className="h3 mb-0 text-gray-800">Lista de Instructores</h1>
-        <Link to="/portal/create-user" className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+        <Link to="/portal/instructores-create" className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
           <FontAwesomeIcon icon={faInstitution} className="creatinguser mr-2" />
           Agregar Instructores
         </Link>

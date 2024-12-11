@@ -7,19 +7,18 @@ import { faFootball } from '@fortawesome/free-solid-svg-icons'
 
 function ClientaDisciplina() {
 
-  const [clientaClasesList, setclientaClasesList] = useState([]);
+  const [clientaDisciplinaList, setclientaDisciplinaList] = useState([]);
   const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
     //On Load
-    getclientaClases();
-    console.log("welcome");
+    getclientaDisciplina();
   }, []);
 
-  let getclientaClases = async () => {
+  let getclientaDisciplina = async () => {
     try {
       const disciplina = await axios.get("http://localhost:8000/api/clientas-disciplina/");
-      setclientaClasesList(disciplina.data);
+      setclientaDisciplinaList(disciplina.data);
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -30,8 +29,8 @@ function ClientaDisciplina() {
     try {
       const confirmDelete = window.confirm("Are you sure do you want to delete the data?");
       if (confirmDelete) {
-        await axios.delete(`${id}`);
-        getclientaClases();
+        await axios.delete(`http://localhost:8000/api/clientas-disciplina/${id}/`);
+        getclientaDisciplina();
       }
     } catch (error) {
       console.log(error);
@@ -42,7 +41,7 @@ function ClientaDisciplina() {
     <>
       <div className="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 className="h3 mb-0 text-gray-800"> Lista de Disciplinas por Clienta</h1>
-        <Link to="/portal/create-user" className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+        <Link to="/portal/clienta-disciplina-create" className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
           <FontAwesomeIcon icon={faFootball} className="creatinguser mr-2" />
           Asociar Clienta a Disciplina
         </Link>
@@ -57,6 +56,7 @@ function ClientaDisciplina() {
                   <thead>
                     <tr>
                       <th>Nombre Clienta</th>
+                      <th>Rut Clienta</th>
                       <th>Nombre Disciplina</th>
                       <th>Nombre Disciplina Contratada</th>
                       <th>Duracion</th>
@@ -67,20 +67,21 @@ function ClientaDisciplina() {
                     </tr>
                   </thead>
                   <tbody>
-                    {clientaClasesList.map((clientaClases) => {
+                    {clientaDisciplinaList.map((ClientaDisciplina) => {
                       return (
                         <tr>
-                          <td>{clientaClases.nombre_clienta}</td>
-                          <td>{clientaClases.nombre_disciplina}</td>
-                          <td>{clientaClases.nombre_disciplina_contratada}</td>
-                          <td>{clientaClases.duracion_disciplina}</td>
-                          <td>{clientaClases.fecha_inscripcion}</td>
-                          <td>{clientaClases.fecha_termino}</td>
-                          <td>{clientaClases.estado_membresia}</td>
+                          <td>{ClientaDisciplina.nombre_clienta}</td>
+                          <td>{ClientaDisciplina.rut_clienta}</td>
+                          <td>{ClientaDisciplina.nombre_disciplina}</td>
+                          <td>{ClientaDisciplina.nombre_disciplina_contratada}</td>
+                          <td>{ClientaDisciplina.duracion_disciplina}</td>
+                          <td>{ClientaDisciplina.fecha_inscripcion}</td>
+                          <td>{ClientaDisciplina.fecha_termino}</td>
+                          <td>{ClientaDisciplina.estado_membresia}</td>
                           <th>
-                            <Link to={`/portal/clienta-disciplina-view/${clientaClases.id_clienta_disciplina}`} className='btn btn-primary btn-sm mr-1'>View</Link>
-                            <Link to={`/portal/clienta-disciplina-view/${clientaClases.id_clienta_disciplina}`} className='btn btn-info btn-sm mr-1'>Edit</Link>
-                            <button onClick={() => handleDelete(clientaClases.id_clienta_disciplina)} className='btn btn-danger btn-sm mr-1'>Delete</button>
+                            <Link to={`/portal/clienta-disciplina-view/${ClientaDisciplina.id_clienta_disciplina}`} className='btn btn-primary btn-sm mr-1'>View</Link>
+                            <Link to={`/portal/clienta-disciplina-view/${ClientaDisciplina.id_clienta_disciplina}`} className='btn btn-info btn-sm mr-1'>Edit</Link>
+                            <button onClick={() => handleDelete(ClientaDisciplina.id_clienta_disciplina)} className='btn btn-danger btn-sm mr-1'>Delete</button>
                           </th>
                         </tr>
                       )

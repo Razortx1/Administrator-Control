@@ -1,32 +1,35 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-function ClaseView() {
+function UserView() {
   const params = useParams();
-  const [claseList, setclaseList] = useState([]);
+  const [userList, setUserList] = useState([]);
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     // On Load
-    getDisciplina();
+    getUsers();
     console.log("welcome to userview");
   }, []);
 
-  let getDisciplina = async () => {
+  let getUsers = async () => {
     try {
-      const response = await fetch(`http://localhost:8000/api/clases/${params.id}/`, {
-        method: 'GET',
-        headers: new Headers({ 'Content-type': 'application/json'}),
-        mode: 'cors'
-});
+      const response = await fetch(
+        `http://localhost:8000/api/clientas/${params.id}/`,
+        {
+          method: "GET",
+          headers: new Headers({ "Content-type": "application/json" }),
+          mode: "cors",
+        }
+      );
       // Verificamos si la respuesta fue exitosa (código 2xx)
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      const clase = await response.json(); // Parseamos el JSON de la respuesta
-      console.log(clase);
-      setclaseList(clase);
+      const user = await response.json(); // Parseamos el JSON de la respuesta
+      console.log(user);
+      setUserList(user);
       setLoading(false);
     } catch (error) {
       console.log("Error al obtener los datos:", error);
@@ -36,10 +39,9 @@ function ClaseView() {
 
   return (
     <>
-      <div>Clase - {params.id}</div>
       <div className="card shadow mb-4">
         <div className="card-header py-3">
-          <h6 className="m-0 font-weight-bold text-primary">ClaseView</h6>
+          <h6 className="m-0 font-weight-bold text-primary">Clienta</h6>
         </div>
         <div className="card-body">
           {isLoading ? (
@@ -53,24 +55,23 @@ function ClaseView() {
                 cellSpacing="0"
               >
                 <thead>
-                    <tr>
-                      <th>Id</th>
-                      <th>Nombre Clase</th>
-                      <th>Id Disciplina</th>
-                    </tr>
-                  </thead>
-                  <tfoot>
-                    <tr>
-                      <th>Id</th>
-                      <th>Nombre Clase</th>
-                      <th>Id Disciplina</th>
-                    </tr>
-                  </tfoot>
+                  <tr>
+                    <th>Rut</th>
+                    <th>Nombres</th>
+                    <th>Apellido Paterno</th>
+                    <th>Apellido Materno</th>
+                    <th>Direccion</th>
+                    <th>Estado Civil</th>
+                  </tr>
+                </thead>
                 <tbody>
                   <tr>
-                    <td>{claseList.id_clase}</td>
-                    <td>{claseList.nombre_clase}</td>
-                    <td>{claseList.id_disciplina}</td>
+                    <td>{userList.rut_clienta}</td>
+                    <td>{userList.nombres}</td>
+                    <td>{userList.apellido_paterno}</td>
+                    <td>{userList.apellido_materno}</td>
+                    <td>{userList.direccion}</td>
+                    <td>{userList.tipo_estado_civil}</td>
                   </tr>
                 </tbody>
               </table>
@@ -82,4 +83,4 @@ function ClaseView() {
   );
 }
 
-export default ClaseView;
+export default UserView;

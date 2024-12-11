@@ -5,20 +5,21 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { faFootball } from '@fortawesome/free-solid-svg-icons'
 
-function Disciplinelist() {
+function HorarioClase() {
 
-  const [disciplineList, setDisciplineList] = useState([]);
+  const [horarioClaseList, sethorarioClaseList] = useState([]);
   const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
     //On Load
-    getDiscipline();
+    getHorarioClase();
+    console.log("welcome");
   }, []);
 
-  let getDiscipline = async () => {
+  let getHorarioClase = async () => {
     try {
-      const disciplina = await axios.get("http://localhost:8000/api/disciplinas/");
-      setDisciplineList(disciplina.data);
+      const horarioclase = await axios.get("http://localhost:8000/api/horario-clase/");
+      sethorarioClaseList(horarioclase.data);
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -29,8 +30,8 @@ function Disciplinelist() {
     try {
       const confirmDelete = window.confirm("Are you sure do you want to delete the data?");
       if (confirmDelete) {
-        await axios.delete(`${id}`);
-        getDiscipline();
+        await axios.delete(`http://localhost:8000/api/horario-clase/${id}/`);
+        getHorarioClase();
       }
     } catch (error) {
       console.log(error);
@@ -40,10 +41,10 @@ function Disciplinelist() {
   return (
     <>
       <div className="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 className="h3 mb-0 text-gray-800">Lista de Disciplinas</h1>
-        <Link to="/portal/create-discipline" className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+        <h1 className="h3 mb-0 text-gray-800">Lista del Horario de las Clases</h1>
+        <Link to="/portal/horario-clase-create" className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
           <FontAwesomeIcon icon={faFootball} className="creatinguser mr-2" />
-          Agregar Disciplina
+          Agregar Horario
         </Link>
       </div>
       {/* <!-- DataTables --> */}
@@ -55,27 +56,27 @@ function Disciplinelist() {
                 <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
                   <thead>
                     <tr>
-                      <th>Nombre Disciplina</th>
-                      <th>Descripcion Disciplina</th>
-                      <th>Rango Horario</th>
-                      <th>Instructor</th>
-                      <th>Cantidad de Clases por Disciplina</th>
+                      <th>Nombre Clase</th>
+                      <th>Fecha de la Clase</th>
+                      <th>Hora de Inicio</th>
+                      <th>Hora de Termino</th>
+                      <th>Cupo</th>
                       <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {disciplineList.map((disciplina) => {
+                    {horarioClaseList.map((horarioclase) => {
                       return (
                         <tr>
-                          <td>{disciplina.nombre_disciplina}</td>
-                          <td>{disciplina.descripcion_disciplina}</td>
-                          <td>{disciplina.rango_horarios}</td>
-                          <td>{disciplina.nombres_instructor}</td>
-                          <td>{disciplina.cantidad_clases}</td>
+                          <td>{horarioclase.nombre_clase}</td>
+                          <td>{horarioclase.fecha_clase}</td>
+                          <td>{horarioclase.hora_inicio}</td>
+                          <td>{horarioclase.hora_fin}</td>
+                          <td>{horarioclase.cupo}</td>
                           <th>
-                            <Link to={`/portal/discipline-view/${disciplina.id_disciplina}`} className='btn btn-primary btn-sm mr-1'>View</Link>
-                            <Link to={`/portal/discipline-view/${disciplina.id_disciplina}`} className='btn btn-info btn-sm mr-1'>Edit</Link>
-                            <button onClick={() => handleDelete(disciplina.id_disciplina)} className='btn btn-danger btn-sm mr-1'>Delete</button>
+                            <Link to={`/portal/horario-clase-view/${horarioclase.idhorarios}`} className='btn btn-primary btn-sm mr-1'>View</Link>
+                            <Link to={`/portal/horario-clase-view/${horarioclase.idhorarios}`} className='btn btn-info btn-sm mr-1'>Edit</Link>
+                            <button onClick={() => handleDelete(horarioclase.idhorarios)} className='btn btn-danger btn-sm mr-1'>Delete</button>
                           </th>
                         </tr>
                       )
@@ -91,4 +92,4 @@ function Disciplinelist() {
   )
 }
 
-export default Disciplinelist
+export default HorarioClase

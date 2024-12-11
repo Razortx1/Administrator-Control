@@ -2,7 +2,7 @@ import React from 'react'
 import { Outlet } from 'react-router-dom'
 import Sidebar from './Sidebar'
 import Topbar from './Topbar'
-import Userlist from './Userlist'
+import Userlist from './client/Userlist'
 
 function Portal() {
   return (

@@ -1,32 +1,35 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-function CantidadClaseDisciplinaView() {
+function ClaseView() {
   const params = useParams();
-  const [candisciplineclassList, setcandisciplineclassList] = useState([]);
+  const [claseList, setclaseList] = useState([]);
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     // On Load
-    getcantidadClaseDisciplina();
+    getDisciplina();
     console.log("welcome to userview");
   }, []);
 
-  let getcantidadClaseDisciplina = async () => {
+  let getDisciplina = async () => {
     try {
-      const response = await fetch(`http://localhost:8000/api/cantidad-clase-disciplina/${params.id}/`, {
-        method: 'GET',
-        headers: new Headers({ 'Content-type': 'application/json'}),
-        mode: 'cors'
-});
+      const response = await fetch(
+        `http://localhost:8000/api/clases/${params.id}/`,
+        {
+          method: "GET",
+          headers: new Headers({ "Content-type": "application/json" }),
+          mode: "cors",
+        }
+      );
       // Verificamos si la respuesta fue exitosa (código 2xx)
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      const disciplina = await response.json(); // Parseamos el JSON de la respuesta
-      console.log(disciplina);
-      setcandisciplineclassList(disciplina);
+      const clase = await response.json(); // Parseamos el JSON de la respuesta
+      console.log(clase);
+      setclaseList(clase);
       setLoading(false);
     } catch (error) {
       console.log("Error al obtener los datos:", error);
@@ -36,10 +39,9 @@ function CantidadClaseDisciplinaView() {
 
   return (
     <>
-      <div>Horario Clase - {params.id}</div>
       <div className="card shadow mb-4">
         <div className="card-header py-3">
-          <h6 className="m-0 font-weight-bold text-primary">HorarioClaseView</h6>
+          <h6 className="m-0 font-weight-bold text-primary">Clase</h6>
         </div>
         <div className="card-body">
           {isLoading ? (
@@ -53,21 +55,15 @@ function CantidadClaseDisciplinaView() {
                 cellSpacing="0"
               >
                 <thead>
-                    <tr>
-                    <th>Id</th>
-                    <th>Cantidad de Clases</th>
-                    </tr>
-                  </thead>
-                  <tfoot>
-                    <tr>
-                    <th>Id</th>
-                    <th>Cantidad de Clases</th>
-                    </tr>
-                  </tfoot>
+                  <tr>
+                    <th>Nombre Clase</th>
+                    <th>Nombre de la Disciplina</th>
+                  </tr>
+                </thead>
                 <tbody>
                   <tr>
-                    <td>{candisciplineclassList.id_cantidad_clases_disciplina}</td>
-                    <td>{candisciplineclassList.cantidad_clases}</td>
+                    <td>{claseList.nombre_clase}</td>
+                    <td>{claseList.nombre_disciplina}</td>
                   </tr>
                 </tbody>
               </table>
@@ -79,4 +75,4 @@ function CantidadClaseDisciplinaView() {
   );
 }
 
-export default CantidadClaseDisciplinaView;
+export default ClaseView;

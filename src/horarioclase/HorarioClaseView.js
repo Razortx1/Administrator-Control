@@ -16,9 +16,9 @@ function HorarioClaseView() {
     try {
       const response = await fetch(`http://localhost:8000/api/horario-clase/${params.id}/`, {
         method: 'GET',
-        headers: new Headers({ 'Content-type': 'application/json'}),
+        headers: new Headers({ 'Content-type': 'application/json' }),
         mode: 'cors'
-});
+      });
       // Verificamos si la respuesta fue exitosa (código 2xx)
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -36,10 +36,9 @@ function HorarioClaseView() {
 
   return (
     <>
-      <div>Horario Clase - {params.id}</div>
       <div className="card shadow mb-4">
         <div className="card-header py-3">
-          <h6 className="m-0 font-weight-bold text-primary">HorarioClaseView</h6>
+          <h6 className="m-0 font-weight-bold text-primary">Horario de la Clase</h6>
         </div>
         <div className="card-body">
           {isLoading ? (
@@ -53,36 +52,21 @@ function HorarioClaseView() {
                 cellSpacing="0"
               >
                 <thead>
-                    <tr>
-                      <th>Id</th>
-                      <th>Nombre Clase</th>
-                      <th>Fecha de la Clase</th>
-                      <th>Hora de Inicio</th>
-                      <th>Hora de Termino</th>
-                      <th>Cupo</th>
-                      <th>Id Clase</th>
-                    </tr>
-                  </thead>
-                  <tfoot>
-                    <tr>
-                      <th>Id</th>
-                      <th>Nombre Clase</th>
-                      <th>Fecha de la Clase</th>
-                      <th>Hora de Inicio</th>
-                      <th>Hora de Termino</th>
-                      <th>Cupo</th>
-                      <th>Id Clase</th>
-                    </tr>
-                  </tfoot>
+                  <tr>
+                    <th>Nombre Clase</th>
+                    <th>Fecha de la Clase</th>
+                    <th>Hora de Inicio</th>
+                    <th>Hora de Termino</th>
+                    <th>Cupo</th>
+                  </tr>
+                </thead>
                 <tbody>
                   <tr>
-                    <td>{horarioClaseList.idhorarios}</td>
-                    <td>{horarioClaseList.clase_nombre}</td>
+                    <td>{horarioClaseList.nombre_clase}</td>
                     <td>{horarioClaseList.fecha_clase}</td>
                     <td>{horarioClaseList.hora_inicio}</td>
                     <td>{horarioClaseList.hora_fin}</td>
                     <td>{horarioClaseList.cupo}</td>
-                    <td>{horarioClaseList.clases_id_clase}</td>
                   </tr>
                 </tbody>
               </table>
