@@ -33,7 +33,7 @@ function Sidebar() {
             <li className="nav-item active">
                 <Link className="nav-link" to="/portal/user-list">
                     <FontAwesomeIcon icon={faUsers} style={{ marginRight: "0.5rem" }} />
-                    <span>Users</span>
+                    <span>Clientas</span>
                 </Link>
             </li>
             {/* <!-- Nav Item - Discipline --> */}

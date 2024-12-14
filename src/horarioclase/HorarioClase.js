@@ -30,7 +30,7 @@ function HorarioClase() {
     try {
       const confirmDelete = window.confirm("Are you sure do you want to delete the data?");
       if (confirmDelete) {
-        await axios.delete(`${id}`);
+        await axios.delete(`http://localhost:8000/api/horario-clase/${id}/`);
         getHorarioClase();
       }
     } catch (error) {
@@ -42,7 +42,7 @@ function HorarioClase() {
     <>
       <div className="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 className="h3 mb-0 text-gray-800">Lista del Horario de las Clases</h1>
-        <Link to="/portal/create-user" className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+        <Link to="/portal/horario-clase-create" className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
           <FontAwesomeIcon icon={faFootball} className="creatinguser mr-2" />
           Agregar Horario
         </Link>

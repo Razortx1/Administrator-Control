@@ -36,10 +36,9 @@ function DisciplinaView() {
 
   return (
     <>
-      <div>Disciplina - {params.id}</div>
       <div className="card shadow mb-4">
         <div className="card-header py-3">
-          <h6 className="m-0 font-weight-bold text-primary">DisciplinaView</h6>
+          <h6 className="m-0 font-weight-bold text-primary">Disciplina</h6>
         </div>
         <div className="card-body">
           {isLoading ? (
@@ -54,32 +53,22 @@ function DisciplinaView() {
               >
                 <thead>
                     <tr>
-                      <th>Id</th>
                       <th>Nombre Disciplina</th>
                       <th>Descripcion Disciplina</th>
                       <th>Rango Horario</th>
-                      <th>Instructor</th>
+                      <th>Rut del Instructor</th>
+                      <th>Nombre Instructor</th>
                       <th>Cantidad de Clases por Disciplina</th>
                     </tr>
                   </thead>
-                  <tfoot>
-                    <tr>
-                      <th>Id</th>
-                      <th>Nombre Disciplina</th>
-                      <th>Descripcion Disciplina</th>
-                      <th>Rango Horario</th>
-                      <th>Instructor</th>
-                      <th>Cantidad de Clases por Disciplina</th>
-                    </tr>
-                  </tfoot>
                 <tbody>
                   <tr>
-                    <td>{disciplinaList.id_disciplina}</td>
-                    <td>{disciplinaList.nombre_disciplina}</td>
-                    <td>{disciplinaList.descripcion_disciplina}</td>
-                    <td>{disciplinaList.rango_horarios}</td>
-                    <td>{disciplinaList.id_instructor}</td>
-                    <td>{disciplinaList.id_cantidad_clases_disciplina}</td>
+                          <td>{disciplinaList.nombre_disciplina}</td>
+                          <td>{disciplinaList.descripcion_disciplina}</td>
+                          <td>{disciplinaList.rango_horarios}</td>
+                          <td>{disciplinaList.rut_instructor}</td>
+                          <td>{disciplinaList.nombres_instructor}</td>
+                          <td>{disciplinaList.cantidad_clases}</td>
                   </tr>
                 </tbody>
               </table>

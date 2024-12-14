@@ -14,11 +14,14 @@ function ClaseView() {
 
   let getDisciplina = async () => {
     try {
-      const response = await fetch(`http://localhost:8000/api/clases/${params.id}/`, {
-        method: 'GET',
-        headers: new Headers({ 'Content-type': 'application/json'}),
-        mode: 'cors'
-});
+      const response = await fetch(
+        `http://localhost:8000/api/clases/${params.id}/`,
+        {
+          method: "GET",
+          headers: new Headers({ "Content-type": "application/json" }),
+          mode: "cors",
+        }
+      );
       // Verificamos si la respuesta fue exitosa (código 2xx)
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -36,10 +39,9 @@ function ClaseView() {
 
   return (
     <>
-      <div>Clase - {params.id}</div>
       <div className="card shadow mb-4">
         <div className="card-header py-3">
-          <h6 className="m-0 font-weight-bold text-primary">ClaseView</h6>
+          <h6 className="m-0 font-weight-bold text-primary">Clase</h6>
         </div>
         <div className="card-body">
           {isLoading ? (
@@ -53,24 +55,15 @@ function ClaseView() {
                 cellSpacing="0"
               >
                 <thead>
-                    <tr>
-                      <th>Id</th>
-                      <th>Nombre Clase</th>
-                      <th>Id Disciplina</th>
-                    </tr>
-                  </thead>
-                  <tfoot>
-                    <tr>
-                      <th>Id</th>
-                      <th>Nombre Clase</th>
-                      <th>Id Disciplina</th>
-                    </tr>
-                  </tfoot>
+                  <tr>
+                    <th>Nombre Clase</th>
+                    <th>Nombre de la Disciplina</th>
+                  </tr>
+                </thead>
                 <tbody>
                   <tr>
-                    <td>{claseList.id_clase}</td>
                     <td>{claseList.nombre_clase}</td>
-                    <td>{claseList.id_disciplina}</td>
+                    <td>{claseList.nombre_disciplina}</td>
                   </tr>
                 </tbody>
               </table>
