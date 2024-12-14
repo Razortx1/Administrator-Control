@@ -11,15 +11,22 @@ function Userlist() {
 
   useEffect(() => {
     //On Load
+    setUserList([])
     getUsers();
-    console.log("welcome");
   }, []);
 
-  let getUsers = async () => {
+  let getUsers = async (rut) => {
     try {
-      const users = await axios.get("http://localhost:8000/api/clientas/");
+      if (rut) {
+        const users = await axios.get(`http://localhost:8000/api/clientas/?search=${rut}`);
+        setUserList(users.data);
+        setLoading(false);
+      }
+      else{
+      const users = await axios.get(`http://localhost:8000/api/clientas/?search=`);
       setUserList(users.data);
-      setLoading(false);
+      setLoading(false);}
+
     } catch (error) {
       console.log(error);
     }
@@ -37,8 +44,14 @@ function Userlist() {
     }
   }
 
+
   return (
     <>
+    <div className='d-sm-flex align-items-center justify-content mb-3 mt-3' style={{paddingLeft: 200, paddingRight: 200}}>
+      <input type='text' className='form-control' placeholder='Ingresa rut o el nombre del cliente' onChange={(e) =>{
+        getUsers(e.target.value)
+      }}/>
+    </div>
       <div className="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 className="h3 mb-0 text-gray-800">Lista de Clienta</h1>
         <Link to="/portal/create-user" className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">

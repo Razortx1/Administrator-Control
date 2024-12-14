@@ -15,7 +15,7 @@ function UserView() {
   let getUsers = async () => {
     try {
       const response = await fetch(
-        `http://localhost:8000/api/clientas/${params.id}/`,
+        `http://localhost:8000/clientas/${params.id}/`,
         {
           method: "GET",
           headers: new Headers({ "Content-type": "application/json" }),

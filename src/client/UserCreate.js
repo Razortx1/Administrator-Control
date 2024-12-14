@@ -1,11 +1,27 @@
 import axios from 'axios';
 import { useFormik } from 'formik';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 function UserCreate() {
+  const [Estadocivil, setEstadoCivil] = useState([]);
   const [isLoading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+
+
+  const getEstadoCivil = async () =>{
+    try {
+      const estado = await axios.get('http://localhost:8000/api/estado-civil/');
+      setEstadoCivil(estado.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() =>{
+    getEstadoCivil();
+  }, [])
 
   const myFormik = useFormik(
     {
@@ -90,11 +106,12 @@ function UserCreate() {
           <div className='col-lg-4'>
             <label>Estado Civil</label>
             <select name='id_estado_civil' value={myFormik.values.id_estado_civil} onChange={myFormik.handleChange} className='form-control'> 
-              <option value="">----Select----</option>
-              <option value="1">Viuda</option>
-              <option value="2">Casada</option>
-              <option value="3">Divorciada</option>
-              <option value="4">Soltera</option>
+              <option value="">----Selecciona----</option>
+              {Estadocivil.map((civil) =>{
+                return(
+                  <option value={civil.id_estado_civil}>{civil.tipo_estado_civil}</option>
+                )
+              })}
             </select>
           </div>
 
