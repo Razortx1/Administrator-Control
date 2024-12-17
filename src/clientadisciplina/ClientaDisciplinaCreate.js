@@ -17,7 +17,7 @@ function ClientaDisciplinaCreate() {
       onSubmit: async (values) => {
         try {
           setLoading(true);
-          await axios.post("http://18.234.61.11:8000/cantidad-clase-disciplina/", values);
+          await axios.post("http://ec2-18-234-61-11.compute-1.amazonaws.com/cantidad-clase-disciplina/", values);
           navigate("/portal/cant-discipline-list");
         } catch (error) {
           console.log(error);

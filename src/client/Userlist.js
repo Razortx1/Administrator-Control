@@ -25,12 +25,12 @@ function Userlist() {
   let getUsers = async (rut) => {
     try {
       if (rut) {
-        const users = await axios.get(`http://18.234.61.11:8000/api/clientas/?search=${rut}`);
+        const users = await axios.get(`http://ec2-18-234-61-11.compute-1.amazonaws.com/api/clientas/?search=${rut}`);
         setUserList(users.data);
         setLoading(false);
       }
       else{
-      const users = await axios.get(`http://18.234.61.11:8000/api/clientas/?search=`);
+      const users = await axios.get(`http://ec2-18-234-61-11.compute-1.amazonaws.com/api/clientas/?search=`);
       setUserList(users.data);
       setLoading(false);}
 
@@ -43,7 +43,7 @@ function Userlist() {
     try {
       const confirmDelete = window.confirm("Are you sure do you want to delete the data?");
       if (confirmDelete) {
-        await axios.delete(`http://18.234.61.11:8000/api/clientas/${id}/`);
+        await axios.delete(`http://ec2-18-234-61-11.compute-1.amazonaws.com/api/clientas/${id}/`);
         getUsers();
       }
     } catch (error) {

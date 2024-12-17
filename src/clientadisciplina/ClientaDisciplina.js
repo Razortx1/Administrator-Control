@@ -24,7 +24,7 @@ function ClientaDisciplina() {
 
   let getclientaDisciplina = async () => {
     try {
-      const disciplina = await axios.get("http://18.234.61.11:8000/api/clientas-disciplina/");
+      const disciplina = await axios.get("http://ec2-18-234-61-11.compute-1.amazonaws.com/api/clientas-disciplina/");
       setclientaDisciplinaList(disciplina.data);
       setLoading(false);
     } catch (error) {
@@ -36,7 +36,7 @@ function ClientaDisciplina() {
     try {
       const confirmDelete = window.confirm("Are you sure do you want to delete the data?");
       if (confirmDelete) {
-        await axios.delete(`http://18.234.61.11:8000/api/clientas-disciplina/${id}/`);
+        await axios.delete(`http://ec2-18-234-61-11.compute-1.amazonaws.com/api/clientas-disciplina/${id}/`);
         getclientaDisciplina();
       }
     } catch (error) {

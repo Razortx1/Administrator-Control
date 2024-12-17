@@ -11,7 +11,7 @@ function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://18.234.61.11:8000/login/", {
+      const response = await fetch("http://ec2-18-234-61-11.compute-1.amazonaws.com/login/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

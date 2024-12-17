@@ -92,7 +92,7 @@ function Dashboard() {
   let getNumeroClienta = async () => {
     try {
       const cuentaCliente = await axios.get(
-        "http://18.234.61.11:8000/api/contar-clientas"
+        "http://ec2-18-234-61-11.compute-1.amazonaws.com/api/contar-clientas"
       );
       setContadorClienta(cuentaCliente.data);
     } catch (error) {

@@ -21,7 +21,7 @@ function HorarioClaseCreate() {
       onSubmit: async (values) => {
         try {
           setLoading(true);
-          await axios.post("http://18.234.61.11:8000/instructores/", values);
+          await axios.post("http://ec2-18-234-61-11.compute-1.amazonaws.com/instructores/", values);
           navigate("/portal/instructores-list");
         } catch (error) {
           console.log(error);

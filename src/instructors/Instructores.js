@@ -31,13 +31,13 @@ function Instructores() {
     try {
       if (rut) {
         const clases = await axios.get(
-          `http://18.234.61.11:8000/api/instructores/?search=${rut}`
+          `http://http://ec2-18-234-61-11.compute-1.amazonaws.com/api/instructores/?search=${rut}`
         );
         setInstructoresList(clases.data);
         setLoading(false);
       } else {
         const clases = await axios.get(
-          `http://18.234.61.11:8000/api/instructores/?search=`
+          `http://http://ec2-18-234-61-11.compute-1.amazonaws.com/api/instructores/?search=`
         );
         setInstructoresList(clases.data);
         setLoading(false);
@@ -53,7 +53,7 @@ function Instructores() {
         "Are you sure do you want to delete the data?"
       );
       if (confirmDelete) {
-        await axios.delete(`http://18.234.61.11:8000/api/instructores/${id}/`);
+        await axios.delete(`http://ec2-18-234-61-11.compute-1.amazonaws.com/api/instructores/${id}/`);
         getInstructores();
       }
     } catch (error) {

@@ -21,7 +21,7 @@ function InstructorView() {
 
   let getInstructores = async () => {
     try {
-      const response = await fetch(`http://18.234.61.11:8000/api/instructores/${params.id}/`, {
+      const response = await fetch(`http://ec2-18-234-61-11.compute-1.amazonaws.com/api/instructores/${params.id}/`, {
         method: 'GET',
         headers: new Headers({ 'Content-type': 'application/json'}),
         mode: 'cors'

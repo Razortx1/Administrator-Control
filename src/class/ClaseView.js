@@ -9,13 +9,12 @@ function ClaseView() {
   useEffect(() => {
     // On Load
     getDisciplina();
-    console.log("welcome to userview");
   }, []);
 
   let getDisciplina = async () => {
     try {
       const response = await fetch(
-        `http://18.234.61.11:8000/api/clases/${params.id}/`,
+        `http://ec2-18-234-61-11.compute-1.amazonaws.com/api/clases/${params.id}/`,
         {
           method: "GET",
           headers: new Headers({ "Content-type": "application/json" }),

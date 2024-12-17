@@ -23,7 +23,7 @@ function CantiDisciplineClass() {
 
   let getcanDiscipline = async () => {
     try {
-      const users = await axios.get("http://18.234.61.11:8000/api/cantidad-clase-disciplina/");
+      const users = await axios.get("http://ec2-18-234-61-11.compute-1.amazonaws.com/api/cantidad-clase-disciplina/");
       setcanDisciplinaList(users.data);
       setLoading(false);
     } catch (error) {
@@ -35,7 +35,7 @@ function CantiDisciplineClass() {
     try {
       const confirmDelete = window.confirm("Are you sure do you want to delete the data?");
       if (confirmDelete) {
-        await axios.delete(`http://18.234.61.11:8000/api/cantidad-clase-disciplina/${id}/`);
+        await axios.delete(`http://ec2-18-234-61-11.compute-1.amazonaws.com/api/cantidad-clase-disciplina/${id}/`);
         getcanDiscipline();
       }
     } catch (error) {
