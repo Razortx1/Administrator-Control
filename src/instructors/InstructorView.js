@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React from "react";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 function InstructorView() {
   const params = useParams();
@@ -10,6 +11,13 @@ function InstructorView() {
     // On Load
     getInstructores();
   }, []);
+
+    const token = localStorage.getItem('authToken');
+
+  let navigate = useNavigate();
+  if (!token){
+    navigate("/")
+  }
 
   let getInstructores = async () => {
     try {

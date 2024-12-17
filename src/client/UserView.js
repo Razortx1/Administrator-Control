@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function UserView() {
   const params = useParams();
@@ -9,8 +9,15 @@ function UserView() {
   useEffect(() => {
     // On Load
     getUsers();
-    console.log("welcome to userview");
   }, []);
+
+
+  const token = localStorage.getItem('authToken');
+
+  let navigate = useNavigate();
+  if (!token){
+    navigate("/")
+  }
 
   let getUsers = async () => {
     try {

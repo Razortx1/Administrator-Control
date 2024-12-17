@@ -1,7 +1,7 @@
 import { faCalendarAlt, faUser } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { faInstitution } from "@fortawesome/free-solid-svg-icons";
 
@@ -19,6 +19,13 @@ function Instructores() {
     setInstructoresList([])
     getInstructores();
   }, []);
+
+    const token = localStorage.getItem('authToken');
+  
+    let navigate = useNavigate();
+    if (!token){
+      navigate("/")
+    }
 
   let getInstructores = async (rut) => {
     try {
