@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function ClientaDisciplinaView() {
   const params = useParams();
@@ -11,6 +11,13 @@ function ClientaDisciplinaView() {
     getClientaDisciplina();
     console.log("welcome to userview");
   }, []);
+
+  const token = localStorage.getItem('authToken');
+
+  let navigate = useNavigate();
+  if (!token){
+    navigate("/")
+  }
 
   let getClientaDisciplina = async () => {
     try {

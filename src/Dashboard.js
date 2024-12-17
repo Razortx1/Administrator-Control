@@ -16,6 +16,8 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDownload } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
+import { redirect, useNavigate } from "react-router-dom";
+import { jsPDF } from "jspdf";
 
 ChartJS.register(
   ArcElement,
@@ -30,7 +32,32 @@ ChartJS.register(
 
 function Dashboard() {
   const [ContadorClienta, setContadorClienta] = useState([]);
+  useEffect(() => {
+    getNumeroClienta();
+  }, []);
 
+
+  const generarPDF = () =>{
+    const doc = new jsPDF();
+    //Titulo
+    doc.setFontSize(16);
+    doc.text("Reporte de Ganancia - 2024" ,20,20)
+    //Ganancia totales por disciplina
+    doc.setFontSize(12)
+    doc.text(`Yoga: $${yogaMonthlyRevenue}`, 20, 30);
+    doc.text(`Crossfit: $${crossfitMonthlyRevenue}`, 20, 40);
+    doc.text(`Zumba: $${zumbaMonthlyRevenue}`, 20, 50);
+    doc.text(`Ganancia Total: $${yogaMonthlyRevenue + crossfitMonthlyRevenue + zumbaMonthlyRevenue}`, 20, 60);
+
+    doc.save("reporte_ganancias.pdf")
+  }
+
+  const token = localStorage.getItem('authToken');
+
+  let navigate = useNavigate();
+  if (!token){
+    navigate("/")
+  }
 
   // Datos de ganancias por disciplina
   const clasesPorMes = 12; // Número de clases por mes
@@ -62,10 +89,6 @@ function Dashboard() {
   ];
 
 
-  useEffect(() => {
-    getNumeroClienta();
-  }, []);
-
   let getNumeroClienta = async () => {
     try {
       const cuentaCliente = await axios.get(
@@ -81,16 +104,16 @@ function Dashboard() {
     <>
       <div className="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 className="h3 mb-0 text-gray-800">Dashboard</h1>
-        <a
-          href="#"
+        <button
           className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
+          onClick={generarPDF}
         >
           <FontAwesomeIcon
             icon={faDownload}
             style={{ marginRight: "0.25rem", color: "white" }}
           />
           Generar Reporte
-        </a>
+        </button>
       </div>
       <div className="row">
         <Card title="Ganancias Mensuales" value="$750.000" color="primary" />
@@ -103,7 +126,7 @@ function Dashboard() {
       </div>
       <div className="row">
         <div className="col-xl-4 col-lg-5">
-          <Doughnut
+          <Doughnut id="graficoGanancias"
             options={{
               plugins: {
                 title: {

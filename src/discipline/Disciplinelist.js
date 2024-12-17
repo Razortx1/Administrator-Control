@@ -1,7 +1,7 @@
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { faFootball } from "@fortawesome/free-solid-svg-icons";
 
@@ -14,6 +14,13 @@ function Disciplinelist() {
     setDisciplineList([])
     getDiscipline();
   }, []);
+
+  const token = localStorage.getItem('authToken');
+
+  let navigate = useNavigate();
+  if (!token){
+    navigate("/")
+  }
 
   let getDiscipline = async (nombre) => {
     try {
