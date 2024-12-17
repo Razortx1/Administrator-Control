@@ -25,12 +25,12 @@ function Userlist() {
   let getUsers = async (rut) => {
     try {
       if (rut) {
-        const users = await axios.get(`http://localhost:8000/api/clientas/?search=${rut}`);
+        const users = await axios.get(`http://18.234.61.11:8000/api/clientas/?search=${rut}`);
         setUserList(users.data);
         setLoading(false);
       }
       else{
-      const users = await axios.get(`http://localhost:8000/api/clientas/?search=`);
+      const users = await axios.get(`http://18.234.61.11:8000/api/clientas/?search=`);
       setUserList(users.data);
       setLoading(false);}
 
@@ -43,7 +43,7 @@ function Userlist() {
     try {
       const confirmDelete = window.confirm("Are you sure do you want to delete the data?");
       if (confirmDelete) {
-        await axios.delete(`http://localhost:8000/api/clientas/${id}/`);
+        await axios.delete(`http://18.234.61.11:8000/api/clientas/${id}/`);
         getUsers();
       }
     } catch (error) {
@@ -95,9 +95,9 @@ function Userlist() {
                           <td>{user.direccion}</td>
                           <td>{user.tipo_estado_civil}</td>
                           <th>
-                            <Link to={`/portal/user-view/${user.id_clienta}`} className='btn btn-primary btn-sm mr-1'>View</Link>
-                            <Link to={`/portal/user-edit/${user.id_clienta}`} className='btn btn-info btn-sm mr-1'>Edit</Link>
-                            <button onClick={() => handleDelete(user.id_clienta)} className='btn btn-danger btn-sm mr-1'>Delete</button>
+                            <Link to={`/portal/user-view/${user.id_clienta}`} className='btn btn-primary btn-sm mr-1'>Revisar</Link>
+                            <Link to={`/portal/user-edit/${user.id_clienta}`} className='btn btn-info btn-sm mr-1'>Editar</Link>
+                            <button onClick={() => handleDelete(user.id_clienta)} className='btn btn-danger btn-sm mr-1'>Eliminar</button>
                           </th>
                         </tr>
                       )

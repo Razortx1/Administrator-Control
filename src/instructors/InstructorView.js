@@ -21,7 +21,7 @@ function InstructorView() {
 
   let getInstructores = async () => {
     try {
-      const response = await fetch(`http://localhost:8000/api/instructores/${params.id}/`, {
+      const response = await fetch(`http://18.234.61.11:8000/api/instructores/${params.id}/`, {
         method: 'GET',
         headers: new Headers({ 'Content-type': 'application/json'}),
         mode: 'cors'

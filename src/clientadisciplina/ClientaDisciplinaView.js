@@ -22,7 +22,7 @@ function ClientaDisciplinaView() {
   let getClientaDisciplina = async () => {
     try {
       const response = await fetch(
-        `http://localhost:8000/api/clientas-disciplina/${params.id}/`,
+        `http://18.234.61.11:8000/api/clientas-disciplina/${params.id}/`,
         {
           method: "GET",
           headers: new Headers({ "Content-type": "application/json" }),

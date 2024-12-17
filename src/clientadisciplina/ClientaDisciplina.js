@@ -24,7 +24,7 @@ function ClientaDisciplina() {
 
   let getclientaDisciplina = async () => {
     try {
-      const disciplina = await axios.get("http://localhost:8000/api/clientas-disciplina/");
+      const disciplina = await axios.get("http://18.234.61.11:8000/api/clientas-disciplina/");
       setclientaDisciplinaList(disciplina.data);
       setLoading(false);
     } catch (error) {
@@ -36,7 +36,7 @@ function ClientaDisciplina() {
     try {
       const confirmDelete = window.confirm("Are you sure do you want to delete the data?");
       if (confirmDelete) {
-        await axios.delete(`http://localhost:8000/api/clientas-disciplina/${id}/`);
+        await axios.delete(`http://18.234.61.11:8000/api/clientas-disciplina/${id}/`);
         getclientaDisciplina();
       }
     } catch (error) {
@@ -86,9 +86,9 @@ function ClientaDisciplina() {
                           <td>{ClientaDisciplina.fecha_termino}</td>
                           <td>{ClientaDisciplina.estado_membresia}</td>
                           <th>
-                            <Link to={`/portal/clienta-disciplina-view/${ClientaDisciplina.id_clienta_disciplina}`} className='btn btn-primary btn-sm mr-1'>View</Link>
-                            <Link to={`/portal/clienta-disciplina-view/${ClientaDisciplina.id_clienta_disciplina}`} className='btn btn-info btn-sm mr-1'>Edit</Link>
-                            <button onClick={() => handleDelete(ClientaDisciplina.id_clienta_disciplina)} className='btn btn-danger btn-sm mr-1'>Delete</button>
+                            <Link to={`/portal/clienta-disciplina-view/${ClientaDisciplina.id_clienta_disciplina}`} className='btn btn-primary btn-sm mr-1'>Revisar</Link>
+                            <Link to={`/portal/clienta-disciplina-view/${ClientaDisciplina.id_clienta_disciplina}`} className='btn btn-info btn-sm mr-1'>Editar</Link>
+                            <button onClick={() => handleDelete(ClientaDisciplina.id_clienta_disciplina)} className='btn btn-danger btn-sm mr-1'>Eliminar</button>
                           </th>
                         </tr>
                       )

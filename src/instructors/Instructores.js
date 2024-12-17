@@ -31,13 +31,13 @@ function Instructores() {
     try {
       if (rut) {
         const clases = await axios.get(
-          `http://localhost:8000/api/instructores/?search=${rut}`
+          `http://18.234.61.11:8000/api/instructores/?search=${rut}`
         );
         setInstructoresList(clases.data);
         setLoading(false);
       } else {
         const clases = await axios.get(
-          `http://localhost:8000/api/instructores/?search=`
+          `http://18.234.61.11:8000/api/instructores/?search=`
         );
         setInstructoresList(clases.data);
         setLoading(false);
@@ -53,7 +53,7 @@ function Instructores() {
         "Are you sure do you want to delete the data?"
       );
       if (confirmDelete) {
-        await axios.delete(`http://localhost:8000/api/instructores/${id}/`);
+        await axios.delete(`http://18.234.61.11:8000/api/instructores/${id}/`);
         getInstructores();
       }
     } catch (error) {
@@ -123,13 +123,13 @@ function Instructores() {
                             to={`/portal/instructor-view/${instructor.id_instructor}`}
                             className="btn btn-primary btn-sm mr-1"
                           >
-                            View
+                            Revisar
                           </Link>
                           <Link
                             to={`/portal/instructor-view/${instructor.id_instructor}`}
                             className="btn btn-info btn-sm mr-1"
                           >
-                            Edit
+                            Editar
                           </Link>
                           <button
                             onClick={() =>
@@ -137,7 +137,7 @@ function Instructores() {
                             }
                             className="btn btn-danger btn-sm mr-1"
                           >
-                            Delete
+                            Eliminar
                           </button>
                         </th>
                       </tr>

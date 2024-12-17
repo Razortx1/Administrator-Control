@@ -19,7 +19,7 @@ function UserEdit() {
 
   const getEstadoCivil = async () => {
     try {
-      const estado = await axios.get("http://localhost:8000/api/estado-civil/");
+      const estado = await axios.get("http://18.234.61.11:8000/api/estado-civil/");
       setEstadoCivil(estado.data);
     } catch (error) {
       console.log(error);
@@ -29,7 +29,7 @@ function UserEdit() {
   let getUserData = async () => {
     try {
       const response = await fetch(
-        `http://localhost:8000/clientas/${params.id}/`,
+        `http://18.234.61.11:8000/clientas/${params.id}/`,
         {
           method: "GET",
           headers: new Headers({ "Content-type": "application/json" }),
@@ -61,7 +61,7 @@ function UserEdit() {
       try {
         setLoading(true);
         await axios.put(
-          `http://localhost:8000/api/clientas/${params.id}/`,
+          `http://18.234.61.11:8000/api/clientas/${params.id}/`,
           values
         );
         setLoading(false);

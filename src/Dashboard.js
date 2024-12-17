@@ -92,7 +92,7 @@ function Dashboard() {
   let getNumeroClienta = async () => {
     try {
       const cuentaCliente = await axios.get(
-        "http://localhost:8000/api/contar-clientas"
+        "http://18.234.61.11:8000/api/contar-clientas"
       );
       setContadorClienta(cuentaCliente.data);
     } catch (error) {

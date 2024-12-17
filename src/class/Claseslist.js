@@ -19,13 +19,13 @@ function Clases() {
     try {
       if (nombre_clase) {
         const clases = await axios.get(
-          `http://localhost:8000/api/clases/?search=${nombre_clase}`
+          `http://18.234.61.11:8000/api/clases/?search=${nombre_clase}`
         );
         setClasesList(clases.data);
         setLoading(false);
       } else {
         const clases = await axios.get(
-          `http://localhost:8000/api/clases/?search=`
+          `http://18.234.61.11:8000/api/clases/?search=`
         );
         setClasesList(clases.data);
         setLoading(false);
@@ -41,7 +41,7 @@ function Clases() {
         "Are you sure do you want to delete the data?"
       );
       if (confirmDelete) {
-        await axios.delete(`http://localhost:8000/api/clases/${id}/`);
+        await axios.delete(`http://18.234.61.11:8000/api/clases/${id}/`);
         getClases();
       }
     } catch (error) {
@@ -105,19 +105,19 @@ function Clases() {
                             to={`/portal/clases-view/${clases.id_clase}`}
                             className="btn btn-primary btn-sm mr-1"
                           >
-                            View
+                            Revisar
                           </Link>
                           <Link
                             to={`/portal/clases-view/${clases.id_clase}`}
                             className="btn btn-info btn-sm mr-1"
                           >
-                            Edit
+                            Editar
                           </Link>
                           <button
                             onClick={() => handleDelete(clases.id_clase)}
                             className="btn btn-danger btn-sm mr-1"
                           >
-                            Delete
+                            Eliminar
                           </button>
                         </th>
                       </tr>

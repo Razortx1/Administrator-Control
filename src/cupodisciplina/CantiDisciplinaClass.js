@@ -23,7 +23,7 @@ function CantiDisciplineClass() {
 
   let getcanDiscipline = async () => {
     try {
-      const users = await axios.get("http://localhost:8000/api/cantidad-clase-disciplina/");
+      const users = await axios.get("http://18.234.61.11:8000/api/cantidad-clase-disciplina/");
       setcanDisciplinaList(users.data);
       setLoading(false);
     } catch (error) {
@@ -35,7 +35,7 @@ function CantiDisciplineClass() {
     try {
       const confirmDelete = window.confirm("Are you sure do you want to delete the data?");
       if (confirmDelete) {
-        await axios.delete(`http://localhost:8000/api/cantidad-clase-disciplina/${id}/`);
+        await axios.delete(`http://18.234.61.11:8000/api/cantidad-clase-disciplina/${id}/`);
         getcanDiscipline();
       }
     } catch (error) {
@@ -71,9 +71,9 @@ function CantiDisciplineClass() {
                         <tr>
                           <td>{candisciplineclass.cantidad_clases}</td>
                           <th>
-                            <Link to={`/portal/cant-discipline-view/${candisciplineclass.id_cantidad_clases_disciplina}`} className='btn btn-primary btn-sm mr-1'>View</Link>
-                            <Link to={`/portal/cant-discipline-view/${candisciplineclass.id_cantidad_clases_disciplina}`} className='btn btn-info btn-sm mr-1'>Edit</Link>
-                            <button onClick={() => handleDelete(candisciplineclass.id_cantidad_clases_disciplina)} className='btn btn-danger btn-sm mr-1'>Delete</button>
+                            <Link to={`/portal/cant-discipline-view/${candisciplineclass.id_cantidad_clases_disciplina}`} className='btn btn-primary btn-sm mr-1'>Revisar</Link>
+                            <Link to={`/portal/cant-discipline-view/${candisciplineclass.id_cantidad_clases_disciplina}`} className='btn btn-info btn-sm mr-1'>Editar</Link>
+                            <button onClick={() => handleDelete(candisciplineclass.id_cantidad_clases_disciplina)} className='btn btn-danger btn-sm mr-1'>Eliminar</button>
                           </th>
                         </tr>
                       )

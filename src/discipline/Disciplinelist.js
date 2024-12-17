@@ -25,12 +25,12 @@ function Disciplinelist() {
   let getDiscipline = async (nombre) => {
     try {
       if (nombre) {
-        const disciplina = await axios.get(`http://localhost:8000/api/disciplinas/?search=${nombre}`);
+        const disciplina = await axios.get(`http://18.234.61.11:8000/api/disciplinas/?search=${nombre}`);
         setDisciplineList(disciplina.data);
         setLoading(false);
       }
       else{
-      const disciplina = await axios.get(`http://localhost:8000/api/disciplinas/?search=`);
+      const disciplina = await axios.get(`http://18.234.61.11:8000/api/disciplinas/?search=`);
       setDisciplineList(disciplina.data);
       setLoading(false);}
     } catch (error) {
@@ -116,13 +116,13 @@ function Disciplinelist() {
                             to={`/portal/discipline-view/${disciplina.id_disciplina}`}
                             className="btn btn-primary btn-sm mr-1"
                           >
-                            View
+                            Revisar
                           </Link>
                           <Link
                             to={`/portal/discipline-view/${disciplina.id_disciplina}`}
                             className="btn btn-info btn-sm mr-1"
                           >
-                            Edit
+                            Editar
                           </Link>
                           <button
                             onClick={() =>
@@ -130,7 +130,7 @@ function Disciplinelist() {
                             }
                             className="btn btn-danger btn-sm mr-1"
                           >
-                            Delete
+                            Eliminar
                           </button>
                         </th>
                       </tr>
