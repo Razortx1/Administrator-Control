@@ -2,9 +2,19 @@ import { faBell, faCircleUser, faEnvelope } from '@fortawesome/free-regular-svg-
 import { faBars, faSearch } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 function Topbar() {
+
+
+    let navigate = useNavigate();
+
+    const handleLogout = () =>{
+        localStorage.removeItem('authToken')
+        navigate("/")
+    }
+
+
     return (
         <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
             {/* <!-- Sidebar Toggle (Topbar) --> */}
@@ -175,7 +185,7 @@ function Topbar() {
                 {/* <!-- Nav Item - User Information --> */}
                 <li className="nav-item dropdown no-arrow">
                     <Link className="nav-link dropdown-toggle" to="/" id="userDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        data-toggle="dropdown" onClick={handleLogout} aria-haspopup="true" aria-expanded="false">
                         <span className="mr-2 d-none d-lg-inline text-gray-600 small">Administrator</span>
                         <FontAwesomeIcon icon={faCircleUser} size={"xl"} />
                     </Link>
