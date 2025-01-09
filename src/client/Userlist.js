@@ -25,13 +25,13 @@ function Userlist() {
   let getUsers = async (rut) => {
     try {
       if (rut) {
-        const users = await axios.get(`http://ec2-18-234-61-11.compute-1.amazonaws.com/api/clientas/?search=${rut}`);
-        setUserList(users.data);
+        const users = await axios.get(`http://localhost:8000/api/clientas/?search=${rut}`);
+        setUserList(users.data.results);
         setLoading(false);
       }
       else{
-      const users = await axios.get(`http://ec2-18-234-61-11.compute-1.amazonaws.com/api/clientas/?search=`);
-      setUserList(users.data);
+      const users = await axios.get(`http://localhost:8000/api/clientas/?page=1`);
+      setUserList(users.data.results);
       setLoading(false);}
 
     } catch (error) {
@@ -85,6 +85,7 @@ function Userlist() {
                     </tr>
                   </thead>
                   <tbody>
+                    {console.log(userList)}
                     {userList.map((user) => {
                       return (
                         <tr>
