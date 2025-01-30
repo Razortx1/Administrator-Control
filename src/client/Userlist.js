@@ -63,7 +63,6 @@ function Userlist() {
     setUserList(users.data.results);
     setNext(users.data.links.next);
     setPrevious(users.data.links.previous);
-    console.log(next)
   };
   let previousChange = async () => {
     const users = await axios.get(previous);
@@ -121,7 +120,6 @@ function Userlist() {
                   </tr>
                 </thead>
                 <tbody>
-                  {console.log(userList)}
                   {userList.map((user) => {
                     return (
                       <tr>
