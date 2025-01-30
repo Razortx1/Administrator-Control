@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import ComponentHistorial from "./client_component/clientHistorialM";
+import ComponentEmergencia from "./client_component/clientContacto";
 
 function UserView() {
   const params = useParams();
@@ -13,6 +15,7 @@ function UserView() {
 
 
   const token = localStorage.getItem('authToken');
+  const rut = userList.rut_clienta
 
   let navigate = useNavigate();
   if (!token){
@@ -22,7 +25,7 @@ function UserView() {
   let getUsers = async () => {
     try {
       const response = await fetch(
-        `http://ec2-18-234-61-11.compute-1.amazonaws.com/clientas/${params.id}/`,
+        `http://localhost:8000/clientas/${params.id}/`,
         {
           method: "GET",
           headers: new Headers({ "Content-type": "application/json" }),
@@ -35,7 +38,6 @@ function UserView() {
       }
 
       const user = await response.json(); // Parseamos el JSON de la respuesta
-      console.log(user);
       setUserList(user);
       setLoading(false);
     } catch (error) {
@@ -86,7 +88,12 @@ function UserView() {
           )}
         </div>
       </div>
+      {isLoading? <div></div> : (<div>
+        <ComponentHistorial rut={rut}/>
+        <ComponentEmergencia rut={rut} />
+      </div>)}
     </>
+    
   );
 }
 
