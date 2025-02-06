@@ -9,11 +9,10 @@ function UserCreate() {
   const navigate = useNavigate();
 
 
-
   const getEstadoCivil = async () =>{
     try {
-      const estado = await axios.get('http://ec2-18-234-61-11.compute-1.amazonaws.com/api/estado-civil/');
-      setEstadoCivil(estado.data);
+      const estado = await axios.get('http://localhost:8000/api/estado-civil/');
+      setEstadoCivil(estado.data.results);
     } catch (error) {
       console.log(error);
     }
@@ -42,8 +41,8 @@ function UserCreate() {
       onSubmit: async (values) => {
         try {
           setLoading(true);
-          await axios.post("http://ec2-18-234-61-11.compute-1.amazonaws.com/clientas/", values);
-          navigate("/portal/user-list");
+          await axios.post("http://localhost:8000/api/clientas/", values);
+          navigate(`/portal/create-client/${values.rut_clienta}`);
         } catch (error) {
           console.log(error);
           alert("Validation failed");
@@ -106,7 +105,7 @@ function UserCreate() {
           <div className='col-lg-4'>
             <label>Estado Civil</label>
             <select name='id_estado_civil' value={myFormik.values.id_estado_civil} onChange={myFormik.handleChange} className='form-control'> 
-              <option value="">----Selecciona----</option>
+            <option value="">----Selecciona----</option>
               {Estadocivil.map((civil) =>{
                 return(
                   <option value={civil.id_estado_civil}>{civil.tipo_estado_civil}</option>
