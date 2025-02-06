@@ -39,6 +39,7 @@ function UserView() {
 
       const user = await response.json(); // Parseamos el JSON de la respuesta
       setUserList(user);
+      console.log(user)
       setLoading(false);
     } catch (error) {
       console.log("Error al obtener los datos:", error);

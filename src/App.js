@@ -29,6 +29,7 @@ import CantidadClaseDisciplinaView from './cupodisciplina/CantiDisciplinaClassVi
 import CantiDisciplineClass from './cupodisciplina/CantiDisciplinaClass';
 import CantiDisciplineClassCreate from './cupodisciplina/CantiDisciplinaClassCreate';
 import ClientaDisciplinaCreate from './clientadisciplina/ClientaDisciplinaCreate';
+import ClientCreate from './client/client_component/clientCreateAccount';
 
 function App() {
   return (
@@ -43,6 +44,9 @@ function App() {
           <Route path='create-user' element={<UserCreate />} />
           <Route path='user-view/:id' element={<UserView />} />
           <Route path='user-edit/:id' element={<UserEdit />} />
+
+          {/* <!-- URLS - Clienta Account --> */}
+          <Route path='create-client/:rut' element={<ClientCreate />}/>
           
           {/* <!-- URLS - Discipline --> */}
           <Route path='discipline-list' element={<Disciplinelist />}></Route>
