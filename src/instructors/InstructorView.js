@@ -1,11 +1,19 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { URLPattern } from "../url";
 
 function InstructorView() {
   const params = useParams();
   const [instructorList, setinstructorList] = useState([]);
   const [isLoading, setLoading] = useState(true);
+
+  const url = URLPattern()
+
+  const MapActivo = {
+    1 : 'Activo',
+    0 : 'Inactivo'
+  }
 
   useEffect(() => {
     // On Load
@@ -21,7 +29,7 @@ function InstructorView() {
 
   let getInstructores = async () => {
     try {
-      const response = await fetch(`http://ec2-18-234-61-11.compute-1.amazonaws.com/api/instructores/${params.id}/`, {
+      const response = await fetch(`${url}/api/instructores/${params.id}/`, {
         method: 'GET',
         headers: new Headers({ 'Content-type': 'application/json'}),
         mode: 'cors'
@@ -63,7 +71,7 @@ function InstructorView() {
                       <th>Nombres Instructor</th>
                       <th>Apellido Paterno</th>
                       <th>Apellido Materno</th>
-                      <th>Activo</th>
+                      <th>Estado Instructor</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -72,7 +80,7 @@ function InstructorView() {
                     <td>{instructorList.nombres}</td>
                     <td>{instructorList.apellido_paterno}</td>
                     <td>{instructorList.apellido_materno}</td>
-                    <td>{instructorList.esta_activo}</td>
+                    <td>{MapActivo[instructorList.esta_activo]}</td>
                   </tr>
                 </tbody>
               </table>

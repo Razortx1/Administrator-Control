@@ -3,11 +3,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import { URLPattern } from '../url'
 
 function CantiDisciplineClass() {
 
   const [candisciplineList, setcanDisciplinaList] = useState([]);
   const [isLoading, setLoading] = useState(false);
+
+  const url = URLPattern()
 
   useEffect(() => {
     //On Load
@@ -23,8 +26,8 @@ function CantiDisciplineClass() {
 
   let getcanDiscipline = async () => {
     try {
-      const users = await axios.get("http://ec2-18-234-61-11.compute-1.amazonaws.com/api/cantidad-clase-disciplina/");
-      setcanDisciplinaList(users.data);
+      const users = await axios.get(`${url}/api/cantidad-clase-disciplina/`);
+      setcanDisciplinaList(users.data.results);
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -35,7 +38,7 @@ function CantiDisciplineClass() {
     try {
       const confirmDelete = window.confirm("Are you sure do you want to delete the data?");
       if (confirmDelete) {
-        await axios.delete(`http://ec2-18-234-61-11.compute-1.amazonaws.com/api/cantidad-clase-disciplina/${id}/`);
+        await axios.delete(`${url}/cantidad-clase-disciplina/${id}/`);
         getcanDiscipline();
       }
     } catch (error) {

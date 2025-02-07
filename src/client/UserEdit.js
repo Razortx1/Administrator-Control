@@ -2,12 +2,15 @@ import axios from "axios";
 import { useFormik } from "formik";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { URLPattern } from "../url";
 
 function UserEdit() {
   const params = useParams();
   const [Estadocivil, setEstadoCivil] = useState([]);
   const [isLoading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+  const url = URLPattern()
 
   useEffect(() => {
     if (getUserData) {
@@ -19,7 +22,7 @@ function UserEdit() {
 
   const getEstadoCivil = async () => {
     try {
-      const estado = await axios.get("http://http://ec2-18-234-61-11.compute-1.amazonaws.com/api/estado-civil/");
+      const estado = await axios.get(`${url}/api/estado-civil/`);
       setEstadoCivil(estado.data);
     } catch (error) {
       console.log(error);
@@ -29,7 +32,7 @@ function UserEdit() {
   let getUserData = async () => {
     try {
       const response = await fetch(
-        `http://http://ec2-18-234-61-11.compute-1.amazonaws.com/clientas/${params.id}/`,
+        `${url}clientas/${params.id}/`,
         {
           method: "GET",
           headers: new Headers({ "Content-type": "application/json" }),

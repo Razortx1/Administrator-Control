@@ -2,10 +2,13 @@ import axios from 'axios';
 import { useFormik } from 'formik';
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { URLPattern } from '../url';
 
 function InstructorCreate() {
   const [isLoading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+  const url = URLPattern()
 
   const myFormik = useFormik(
     {
@@ -21,7 +24,7 @@ function InstructorCreate() {
       onSubmit: async (values) => {
         try {
           setLoading(true);
-          await axios.post("http://ec2-18-234-61-11.compute-1.amazonaws.com/instructores/", values);
+          await axios.post(`${url}/instructores/`, values);
           navigate("/portal/instructores-list");
         } catch (error) {
           console.log(error);

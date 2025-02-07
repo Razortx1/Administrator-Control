@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { URLPattern } from "../../url";
 
 export function ComponentHistorial(rut) {
   const [historialList, sethistorialList] = useState([]);
@@ -8,6 +9,8 @@ export function ComponentHistorial(rut) {
   const search = rut
   let searchRut = search.rut
 
+  const url = URLPattern()
+
   useEffect(() => {
     getHistorialMedico();
   }, []);
@@ -15,7 +18,7 @@ export function ComponentHistorial(rut) {
   let getHistorialMedico = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8000/api/historial-medico/",
+        `${url}/api/historial-medico/`,
         {
           params: {
             rut_clienta: searchRut, // Aquí agregamos el parámetro de búsqueda

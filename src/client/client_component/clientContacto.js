@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { URLPattern } from "../../url";
 
 export function ComponentEmergencia(rut) {
     const [emergenciaU, setEmergenciaU] = useState([]);
     const [isLoading, setLoading] = useState(true);
   
+
+
+  const url = URLPattern()
+
     const search = rut
     let searchRut = search.rut
   
@@ -15,7 +20,7 @@ export function ComponentEmergencia(rut) {
     let getHistorialMedico = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8000/api/contacto-emergencia/",
+          `${url}/api/contacto-emergencia/`,
           {
             params: {
               rut_clienta: searchRut, // Aquí agregamos el parámetro de búsqueda
@@ -25,7 +30,6 @@ export function ComponentEmergencia(rut) {
             },
           }
         );
-        console.log(response.data.results)
         setEmergenciaU(response.data.results);
         setLoading(false);
       } catch (error) {

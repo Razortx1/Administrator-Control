@@ -3,12 +3,16 @@ import axios from "axios";
 import { useFormik } from "formik";
 import { useNavigate, useParams } from "react-router-dom";
 import * as Yup from "yup";
+import { URLPattern } from "../../url";
 
 function ClientCreate() {
   const params = useParams();
   const [clientCreate, setClientCreate] = useState([]);
   const [isLoading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+
+  const url = URLPattern()
 
   useEffect(() => {
     getUser();
@@ -32,7 +36,7 @@ function ClientCreate() {
 
   let getUser = async () => {
     const user = await axios.get(
-      `http://localhost:8000/api/clientas/?search=${params.rut}`
+      `${url}api/clientas/?search=${params.rut}`
     );
     const data = user.data.results;
     setClientCreate(data[0]);
@@ -49,7 +53,7 @@ function ClientCreate() {
     onSubmit: async (values) => {
       try {
         setLoading(true);
-        await axios.post("http://localhost:8000/api/usuarios/", values);
+        await axios.post(`${url}/api/usuarios/`, values);
         navigate("/portal/user-list");
       } catch (error) {
         setLoading(false);

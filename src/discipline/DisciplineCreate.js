@@ -2,10 +2,14 @@ import axios from 'axios';
 import { useFormik } from 'formik';
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { URLPattern } from '../url';
 
 function DisciplinaCreate() {
   const [isLoading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+
+  const url = URLPattern()
 
   const myFormik = useFormik(
     {
@@ -21,7 +25,7 @@ function DisciplinaCreate() {
       onSubmit: async (values) => {
         try {
           setLoading(true);
-          await axios.post("", values);
+          await axios.post(`${url}api/disciplinas`, values);
           navigate("/portal/user-list");
         } catch (error) {
           console.log(error);

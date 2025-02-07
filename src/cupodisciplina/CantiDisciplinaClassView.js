@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { URLPattern } from "../url";
 
 function CantidadClaseDisciplinaView() {
   const params = useParams();
   const [candisciplineclassList, setcandisciplineclassList] = useState([]);
   const [isLoading, setLoading] = useState(true);
+
+
+  const url = URLPattern()
 
   useEffect(() => {
     // On Load
@@ -20,7 +24,7 @@ function CantidadClaseDisciplinaView() {
 
   let getcantidadClaseDisciplina = async () => {
     try {
-      const response = await fetch(`http://ec2-18-234-61-11.compute-1.amazonaws.com/api/cantidad-clase-disciplina/${params.id}/`, {
+      const response = await fetch(`${url}api/cantidad-clase-disciplina/${params.id}/`, {
         method: 'GET',
         headers: new Headers({ 'Content-type': 'application/json'}),
         mode: 'cors'

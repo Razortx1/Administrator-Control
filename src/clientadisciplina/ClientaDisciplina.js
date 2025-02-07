@@ -4,11 +4,14 @@ import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { faFootball } from '@fortawesome/free-solid-svg-icons'
+import { URLPattern } from '../url'
 
 function ClientaDisciplina() {
 
   const [clientaDisciplinaList, setclientaDisciplinaList] = useState([]);
   const [isLoading, setLoading] = useState(false);
+
+  const url = URLPattern()
 
   useEffect(() => {
     //On Load
@@ -24,8 +27,8 @@ function ClientaDisciplina() {
 
   let getclientaDisciplina = async () => {
     try {
-      const disciplina = await axios.get("http://ec2-18-234-61-11.compute-1.amazonaws.com/api/clientas-disciplina/");
-      setclientaDisciplinaList(disciplina.data);
+      const disciplina = await axios.get(`${url}api/clientas-disciplina/`);
+      setclientaDisciplinaList(disciplina.data.results);
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -36,7 +39,7 @@ function ClientaDisciplina() {
     try {
       const confirmDelete = window.confirm("Are you sure do you want to delete the data?");
       if (confirmDelete) {
-        await axios.delete(`http://ec2-18-234-61-11.compute-1.amazonaws.com/api/clientas-disciplina/${id}/`);
+        await axios.delete(`${url}api/clientas-disciplina/${id}/`);
         getclientaDisciplina();
       }
     } catch (error) {

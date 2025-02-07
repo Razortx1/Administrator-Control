@@ -4,11 +4,14 @@ import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { faFootball } from '@fortawesome/free-solid-svg-icons'
+import { URLPattern } from '../url'
 
 function HorarioClase() {
 
   const [horarioClaseList, sethorarioClaseList] = useState([]);
   const [isLoading, setLoading] = useState(false);
+
+  const url = URLPattern()
 
   useEffect(() => {
     //On Load
@@ -24,8 +27,8 @@ function HorarioClase() {
 
   let getHorarioClase = async () => {
     try {
-      const horarioclase = await axios.get("http://http://ec2-18-234-61-11.compute-1.amazonaws.com/api/horario-clase/");
-      sethorarioClaseList(horarioclase.data);
+      const horarioclase = await axios.get(`${url}api/horario-clase/`);
+      sethorarioClaseList(horarioclase.data.results);
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -36,7 +39,7 @@ function HorarioClase() {
     try {
       const confirmDelete = window.confirm("Are you sure do you want to delete the data?");
       if (confirmDelete) {
-        await axios.delete(`http://ec2-18-234-61-11.compute-1.amazonaws.com/api/horario-clase/${id}/`);
+        await axios.delete(`${url}api/horario-clase/${id}/`);
         getHorarioClase();
       }
     } catch (error) {

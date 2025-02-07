@@ -2,10 +2,14 @@ import axios from 'axios';
 import { useFormik } from 'formik';
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { URLPattern } from '../url';
 
 function ClientaDisciplinaCreate() {
   const [isLoading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+
+  const url = URLPattern()
 
   const myFormik = useFormik(
     {
@@ -17,7 +21,7 @@ function ClientaDisciplinaCreate() {
       onSubmit: async (values) => {
         try {
           setLoading(true);
-          await axios.post("http://ec2-18-234-61-11.compute-1.amazonaws.com/cantidad-clase-disciplina/", values);
+          await axios.post(`${url}/cantidad-clase-disciplina/`, values);
           navigate("/portal/cant-discipline-list");
         } catch (error) {
           console.log(error);

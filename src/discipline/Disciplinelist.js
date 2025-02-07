@@ -4,10 +4,13 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { faFootball } from "@fortawesome/free-solid-svg-icons";
+import { URLPattern } from "../url";
 
 function Disciplinelist() {
   const [disciplineList, setDisciplineList] = useState([]);
   const [isLoading, setLoading] = useState(false);
+
+  const url = URLPattern()
 
   useEffect(() => {
     //On Load
@@ -25,13 +28,13 @@ function Disciplinelist() {
   let getDiscipline = async (nombre) => {
     try {
       if (nombre) {
-        const disciplina = await axios.get(`http://ec2-18-234-61-11.compute-1.amazonaws.com/api/disciplinas/?search=${nombre}`);
-        setDisciplineList(disciplina.data);
+        const disciplina = await axios.get(`${url}api/disciplinas/?search=${nombre}`);
+        setDisciplineList(disciplina.data.results);
         setLoading(false);
       }
       else{
-      const disciplina = await axios.get(`http://ec2-18-234-61-11.compute-1.amazonaws.com/api/disciplinas/?search=`);
-      setDisciplineList(disciplina.data);
+      const disciplina = await axios.get(`${url}/api/disciplinas/?search=`);
+      setDisciplineList(disciplina.data.results);
       setLoading(false);}
     } catch (error) {
       console.log(error);

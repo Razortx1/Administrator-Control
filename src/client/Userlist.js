@@ -3,12 +3,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { URLPattern } from "../url";
 
 function Userlist() {
   const [userList, setUserList] = useState([]);
   const [isLoading, setLoading] = useState(false);
   const [next, setNext] = useState();
   const [previous, setPrevious] = useState();
+
+  const url = URLPattern()
 
   useEffect(() => {
     //On Load
@@ -27,12 +30,12 @@ function Userlist() {
     try {
       if (rut) {
         const users = await axios.get(
-          `http://localhost:8000/api/clientas/?search=${rut}`
+          `${url}/api/clientas/?search=${rut}`
         );
         setUserList(users.data.results);
         setLoading(false);
       } else {
-        const users = await axios.get(`http://localhost:8000/api/clientas/`);
+        const users = await axios.get(`${url}api/clientas/`);
         setUserList(users.data.results);
         setNext(users.data.links.next);
         setPrevious(users.data.links.previous);
@@ -50,7 +53,7 @@ function Userlist() {
       );
       if (confirmDelete) {
         await axios.delete(
-          `http://ec2-18-234-61-11.compute-1.amazonaws.com/api/clientas/${id}/`
+          `${url}/api/clientas/${id}/`
         );
         getUsers();
       }

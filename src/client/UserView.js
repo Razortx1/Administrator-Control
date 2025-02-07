@@ -2,11 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import ComponentHistorial from "./client_component/clientHistorialM";
 import ComponentEmergencia from "./client_component/clientContacto";
+import { URLPattern } from "../url";
 
 function UserView() {
   const params = useParams();
   const [userList, setUserList] = useState([]);
   const [isLoading, setLoading] = useState(true);
+
+  const url = URLPattern()
 
   useEffect(() => {
     // On Load
@@ -25,7 +28,7 @@ function UserView() {
   let getUsers = async () => {
     try {
       const response = await fetch(
-        `http://localhost:8000/clientas/${params.id}/`,
+        `${url}api/clientas/${params.id}/`,
         {
           method: "GET",
           headers: new Headers({ "Content-type": "application/json" }),
@@ -39,7 +42,6 @@ function UserView() {
 
       const user = await response.json(); // Parseamos el JSON de la respuesta
       setUserList(user);
-      console.log(user)
       setLoading(false);
     } catch (error) {
       console.log("Error al obtener los datos:", error);

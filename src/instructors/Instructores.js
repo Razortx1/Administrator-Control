@@ -4,10 +4,13 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { faInstitution } from "@fortawesome/free-solid-svg-icons";
+import { URLPattern } from "../url";
 
 function Instructores() {
   const [instructoresList, setInstructoresList] = useState([]);
   const [isLoading, setLoading] = useState(false);
+
+  const url = URLPattern()
 
   const MapActivo = {
     1 : 'Activo',
@@ -31,15 +34,15 @@ function Instructores() {
     try {
       if (rut) {
         const clases = await axios.get(
-          `http://http://ec2-18-234-61-11.compute-1.amazonaws.com/api/instructores/?search=${rut}`
+          `${url}/api/instructores/?search=${rut}`
         );
-        setInstructoresList(clases.data);
+        setInstructoresList(clases.data.results);
         setLoading(false);
       } else {
         const clases = await axios.get(
-          `http://http://ec2-18-234-61-11.compute-1.amazonaws.com/api/instructores/?search=`
+          `${url}/api/instructores/?search=`
         );
-        setInstructoresList(clases.data);
+        setInstructoresList(clases.data.results);
         setLoading(false);
       }
     } catch (error) {
@@ -53,7 +56,7 @@ function Instructores() {
         "Are you sure do you want to delete the data?"
       );
       if (confirmDelete) {
-        await axios.delete(`http://ec2-18-234-61-11.compute-1.amazonaws.com/api/instructores/${id}/`);
+        await axios.delete(`${url}/api/instructores/${id}/`);
         getInstructores();
       }
     } catch (error) {

@@ -2,16 +2,18 @@ import axios from 'axios';
 import { useFormik } from 'formik';
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { URLPattern } from '../url';
 
 function UserCreate() {
   const [Estadocivil, setEstadoCivil] = useState([]);
   const [isLoading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+  const url = URLPattern()
 
   const getEstadoCivil = async () =>{
     try {
-      const estado = await axios.get('http://localhost:8000/api/estado-civil/');
+      const estado = await axios.get(`${url}/api/estado-civil/`);
       setEstadoCivil(estado.data.results);
     } catch (error) {
       console.log(error);
@@ -41,7 +43,7 @@ function UserCreate() {
       onSubmit: async (values) => {
         try {
           setLoading(true);
-          await axios.post("http://localhost:8000/api/clientas/", values);
+          await axios.post(`${url}/api/clientas/`, values);
           navigate(`/portal/create-client/${values.rut_clienta}`);
         } catch (error) {
           console.log(error);
