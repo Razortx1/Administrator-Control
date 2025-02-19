@@ -59,7 +59,6 @@ function ClientCreate() {
         setLoading(false);
         console.log(error);
       }
-      console.log(values);
     },
   });
   return (
@@ -99,7 +98,7 @@ function ClientCreate() {
           </div>
 
           <div className="col-lg-4">
-            <label>Constraseña</label>
+            <label>Contraseña</label>
             <input
               name="password"
               value={myFormik.values.password}
@@ -113,7 +112,7 @@ function ClientCreate() {
           </div>
 
           <div className="col-lg-4">
-            <label>Validar Constraseña</label>
+            <label>Validar Contraseña</label>
             <input
               name="confirmpassword"
               value={myFormik.values.confirmpassword}

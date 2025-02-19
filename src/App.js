@@ -30,6 +30,8 @@ import CantiDisciplineClass from './cupodisciplina/CantiDisciplinaClass';
 import CantiDisciplineClassCreate from './cupodisciplina/CantiDisciplinaClassCreate';
 import ClientaDisciplinaCreate from './clientadisciplina/ClientaDisciplinaCreate';
 import ClientCreate from './client/client_component/clientCreateAccount';
+import ClientHistorialCreate from './client/client_component/clientHistorialMCreate';
+import ClientHistorialEdit from './client/client_component/clientHistorialMEdit';
 
 function App() {
   return (
@@ -47,6 +49,10 @@ function App() {
 
           {/* <!-- URLS - Clienta Account --> */}
           <Route path='create-client/:rut' element={<ClientCreate />}/>
+
+          {/* <!-- URLS - HistorialMedico --> */}
+          <Route path='historial-medico/:rut' element={<ClientHistorialCreate />}/>
+          <Route path='historial-medico-edit/:id' element={<ClientHistorialEdit />} />
           
           {/* <!-- URLS - Discipline --> */}
           <Route path='discipline-list' element={<Disciplinelist />}></Route>

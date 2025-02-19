@@ -23,7 +23,7 @@ function UserEdit() {
   const getEstadoCivil = async () => {
     try {
       const estado = await axios.get(`${url}/api/estado-civil/`);
-      setEstadoCivil(estado.data);
+      setEstadoCivil(estado.data.results);
     } catch (error) {
       console.log(error);
     }
